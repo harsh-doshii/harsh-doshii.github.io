@@ -10,4 +10,4 @@ A very fancy terminal with logo of k9s opened up inside my terminal. I could eas
 My main task today was to get the logs, just pressing "L" on the container I wanted gave me all that I ever needed!
 Also pressing "D" on pods for which you want describe was awesome!
 
-Along with easy navigation, there are so many commands that can be used. I am yet to explore a lot. k9s is an amazing productivity tool imo, the UI will really speed up k8s management
+Along with easy navigation, there are so many commands that can be used. I am yet to explore a lot. k9s is an amazing productivity tool imo, the UI will really speed up k8s management. I feel better with this tool in my aresnal that makes me a better SWE!
