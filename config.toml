@@ -28,6 +28,7 @@ menu = [
 
 socials = [
     { name = "mastodon", url = "https://discuss.systems/@hdoshi", icon = "mastodon" },
+    { name = "linkedin", url = "https://www.linkedin.com/in/harsh-doshi16/", icon = "linkedin" },
     { name = "github", url = "https://github.com/harsh-doshii", icon = "github" },
 ]
 
