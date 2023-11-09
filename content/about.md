@@ -11,6 +11,6 @@ At Salesforce, I am in the domain of security - threat and vulnerability managem
 
 The idea of this website is to document my daily learnings in my pursuit of becoming a better software engineer everyday! The blog posts here will more often than not be half-baked and shabby. These are mainly written as my short-notes.
 
-![alt text for screen readers](/icons/unnamed.png "Text to show on mouseover").
+![alt text for screen readers](/icons/unnamed.png "Lo-fi boy")
 
 Credits for this website goes to: [Apollo](https://github.com/not-matthias/apollo)
