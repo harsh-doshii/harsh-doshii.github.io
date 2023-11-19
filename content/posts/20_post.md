@@ -15,3 +15,4 @@ So when you create a EKS cluster, AWS provisions, deploys and manages Kubernetes
 
 2. Container Deployment: Now we need infrastructure that actually runs our containers. These are known as worker nodes in Kubernetes. This is provided by EC2 instances (same as what we did for ECS). We will connect these EC2 instances to EKS cluster (control plane). An EC2 instance will thus have: A Docker Agent (the container deployment) and an k8s process (the control plane deployment, through which master-worker communication happens).
 
+Knowledge credits: [TechWorld with Nana](https://www.youtube.com/watch?v=AYAh6YDXuho&t=1358s).

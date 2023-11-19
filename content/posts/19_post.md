@@ -18,3 +18,5 @@ So basically when we are using ECS+EC2,
 2. What we dont have to take care of: ECS. Container management is done by ECS, we don't have to do anything here. 
 
 *In case we want the the infrastructure to also be taken care of by AWS, we have to use the AWS service called as Fargate. I will learn about it later. 
+
+Knowledge credits: [TechWorld with Nana](https://www.youtube.com/watch?v=AYAh6YDXuho&t=1358s).
