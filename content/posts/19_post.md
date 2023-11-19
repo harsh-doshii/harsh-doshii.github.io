@@ -10,8 +10,8 @@ Now once they are deployed, next question is how will you manage these container
 
 How does ECS Work?
 
-1. First we create a ECS cluster, it contains all services that are necessary to manage containers. It is basically a control plane for virtual machines (EC2 instances) that are running your containers. 
-2. These containers are hosted on EC2 instances. These EC2 instances are connected to ECS control plane. An EC2 instance will thus have: A Docker Agent (the container deployment) and an ECS Agent (the control plane deployment).
+1. Control Plane: First we create a ECS cluster, it contains all services that are necessary to manage containers. It is basically a control plane for virtual machines (EC2 instances) that are running your containers. 
+2. Container deployment: These containers are hosted on EC2 instances. These EC2 instances are connected to ECS control plane. An EC2 instance will thus have: A Docker Agent (the container deployment) and an ECS Agent (the control plane deployment).
 
 So basically when we are using ECS+EC2,
 1. What we have to take care of: EC2 instances*. We need to create and provision them. The advantage is that we have full control of the infrastructure that we want to use.
