@@ -1,6 +1,6 @@
 +++
 title = "7. Ideas for my portfolio"
-date = 2023-11-11
+date = 2023-11-06
 
 +++
 

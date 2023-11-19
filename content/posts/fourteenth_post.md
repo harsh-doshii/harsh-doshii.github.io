@@ -1,6 +1,6 @@
 +++
 title = "14. Istio - A service mesh implementation"
-date = 2023-11-18
+date = 2023-11-13
 
 +++
 

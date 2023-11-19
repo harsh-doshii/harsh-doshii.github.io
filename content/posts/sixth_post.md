@@ -1,6 +1,6 @@
 +++
 title = "6. Blue Green Deployment"
-date = 2023-11-10
+date = 2023-11-05
 
 +++
 

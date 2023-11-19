@@ -1,6 +1,6 @@
 +++
 title = "12. WTF is a Manifest file?"
-date = 2023-11-16
+date = 2023-11-11
 
 +++
 

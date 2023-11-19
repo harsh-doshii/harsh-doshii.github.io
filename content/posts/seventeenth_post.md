@@ -1,6 +1,6 @@
 +++
 title = "17. Idempotency in APIs"
-date = 2023-11-21
+date = 2023-11-16
 
 +++
 

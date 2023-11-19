@@ -1,6 +1,6 @@
 +++
 title = "9. First experience with k9s"
-date = 2023-11-13
+date = 2023-11-08
 
 +++
 

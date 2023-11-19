@@ -1,6 +1,6 @@
 +++
 title = "5. GNU vs Linux"
-date = 2023-11-09
+date = 2023-11-04
 +++
 
 What the heck is the difference between GNU, Linux and GNU/Linux?

@@ -1,6 +1,6 @@
 +++
 title = "3. NGINX"
-date = 2023-11-07
+date = 2023-11-02
 +++
 
 Hi all, today I spent time learning about NGINX!

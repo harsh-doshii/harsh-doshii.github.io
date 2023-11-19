@@ -1,6 +1,6 @@
 +++
 title = "10. Zero Day Vulnerability"
-date = 2023-11-14
+date = 2023-11-09
 
 +++
 

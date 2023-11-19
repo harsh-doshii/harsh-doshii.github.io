@@ -1,6 +1,6 @@
 +++
 title = "16. All about HTTPS"
-date = 2023-11-20
+date = 2023-11-15
 
 +++
 

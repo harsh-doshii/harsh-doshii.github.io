@@ -1,6 +1,6 @@
 +++
 title = "8. k8s Pods vs Nodes vs Clusters"
-date = 2023-11-12
+date = 2023-11-07
 
 +++
 
