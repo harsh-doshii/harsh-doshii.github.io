@@ -1,5 +1,5 @@
 +++
-title = "23. Microservices Communication - Synchronous"
+title = "22. Microservices Communication - Synchronous"
 date = 2023-11-21
 
 +++
