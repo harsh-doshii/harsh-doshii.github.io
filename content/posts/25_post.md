@@ -1,10 +1,10 @@
 +++
-title = "25. Finding Cadidate Keys in a Database"
+title = "25. Finding Candidate Keys in a Database"
 date = 2023-11-24
 
 +++
 
-Candidate keys are a set of columns that can uniquely identify a row. They are not a minimal set. They are all possible combinations of columns that can uniqely identify a row.
+Candidate keys are a set of columns that can uniquely identify a row. They need not be a minimal set. They are all possible combinations of columns that can uniqely identify a row.
 
 Let's say we have a database with N cols and R rows, how do we find the Candidate keys?
 1. We make all possible combintations of columns. Let's say we have 3 columns, in that case 2^3 - 1, 7 combinations are possible:
