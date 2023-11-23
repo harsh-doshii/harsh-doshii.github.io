@@ -1,5 +1,5 @@
 +++
-title = "28. Coding Standards, Principles and Patterns"
+title = "28. Writing better code: Standards, Principles and Patterns"
 date = 2023-11-27
 
 +++
@@ -23,3 +23,9 @@ b. Structural Patterns: Deals with how we interact and manipulate our object ins
 c. Behavioral Patterns: Focuses on how code functions and communicates with other parts of code. Eg. Observer patterns.
 
 I will be covering details of each in upcoming blogs!
+
+Generic tips to write better code:
+1. Avoid encodings.
+2. Don't use acronyms for variable names.
+3. Use clear names, be descriptive.
+4. Use constants for hard-coding.
