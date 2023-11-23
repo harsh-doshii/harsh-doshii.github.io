@@ -36,3 +36,4 @@ It's important to know that Microservices (which are mostly containerised) are a
 
 Stateful applications are typically databases;
 
+Knowledge credits: [Cloud Advocate](https://www.youtube.com/watch?v=P8D6P-6KVNM)
