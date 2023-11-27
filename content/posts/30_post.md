@@ -11,7 +11,7 @@ $HOME: This is the address of the home directory,
 $USER: This holds the username 
 There are a lot of more such env variables, $PATH is a famous one.
 
-$PATH holds a list of directories that your bash shell searches when you type a command in ther terminal. In other words, it contains path of directories where executables are stored. 
+$PATH holds a list of directories that your bash shell searches when you type a command in the terminal. In other words, it contains path of directories where executables are stored. 
 For example, when you use the command "ls" or "java" the terminal searches for this executable in the directories mentioned in the $PATH variable. 
 
 $JAVA_HOME is an environment variable that points to the JDK. It is needed by development tools, like Maven and Gradle to pick up the exact version of JDK being used. 
