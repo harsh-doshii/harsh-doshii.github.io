@@ -8,9 +8,9 @@ The nature of my work requires me to do devops stuff as well and YAML is an inte
 
 1. Key-Value Pairs:
 
-`fruit: apple
+`fruit: apple` 
 
-dessert: "apple pie"`
+`dessert: "apple pie"`
 
 In case that there is a whitespace in the value, wrap it up inside inverted commas.
 
@@ -19,24 +19,23 @@ In case that there is a whitespace in the value, wrap it up inside inverted comm
 
 Each Key has multiple Values. Order matters:
 
-`Drinks:
+`Drinks:` 
 
-    - Smoothie
+   `- Smoothie`
 
-    - "Sparkling Water"
-`
+   `- "Sparkling Water"`
+
 This is basically: `Drinks = [Smoothie, Sparkling Water]`
 
 3. Directories/Maps:
 
 There are Key-Value pairs for each Key. Order doesn't matter.
 
-`Burger:
+`Burger:`
 
-    Calories: 500
+   `Calories: 500`
 
-    Price: 15
-`
+   `Price: 15`
 
 This is basically: `Burger = [Calories --> 500, Price --> 15]`
 
