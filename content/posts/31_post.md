@@ -1,5 +1,5 @@
 +++
-title = "31. YMAL Ain't Markup Language"
+title = "31. YAML Ain't Markup Language"
 date = 2023-11-30
 
 +++
