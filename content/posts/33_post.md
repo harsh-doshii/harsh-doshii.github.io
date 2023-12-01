@@ -24,7 +24,7 @@ A docker run command like this:
 
 is equivalent to a docker-compose.yaml:
 
-```
+```yaml
 name: <your project name>
     services:
     nginx:
@@ -38,6 +38,7 @@ name: <your project name>
             max-size: 1g
     image: nginx
 ```
+
 And a `docker-compose up` command
 
 An important FAQ straight from Docker documentation:
