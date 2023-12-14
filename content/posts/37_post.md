@@ -1,6 +1,6 @@
 +++
 title = "37. application.properties in Springboot"
-date = 2023-12-05
+date = 2023-12-06
 
 +++
 
