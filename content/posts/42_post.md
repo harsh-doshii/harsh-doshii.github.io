@@ -1,6 +1,6 @@
 +++
 title = "41. Hexagonal Architecture"
-date = 2023-12-10
+date = 2023-12-11
 
 +++
 
