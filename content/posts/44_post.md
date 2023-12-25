@@ -1,5 +1,5 @@
 +++
-title = "44. Creational Design Patterns - Faactory Method"
+title = "44. Creational Design Patterns - Factory Method"
 date = 2023-12-13
 
 +++
