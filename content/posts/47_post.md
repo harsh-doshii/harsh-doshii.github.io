@@ -18,8 +18,36 @@ Why should I use dependency injection? We should use dependency injection becaus
 
 There are basically three types of dependency injection:
 
-1. constructor injection: the dependencies are provided through a class constructor.
+1. constructor injection: the dependencies are provided through a class constructor. Example:
+
+```java
+public class UserService {
+    private final UserRepository userRepository;
+
+    // Constructor Injection
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    // ... other methods using userRepository
+}
+```
+
 2. setter injection: the client exposes a setter method that the injector uses to inject the dependency.
+
+```java
+public class SomeClass {
+    private SomeDependency someDependency;
+
+    // Setter Injection
+    public void setSomeDependency(SomeDependency someDependency) {
+        this.someDependency = someDependency;
+    }
+
+    // ... other methods using someDependency
+}
+```
+
 3. interface injection: the dependency provides an injector method that will inject the dependency into any client passed to it. Clients must implement an interface that exposes a setter method that accepts the dependency.
 
 So now its the dependency injection’s responsibility to:
