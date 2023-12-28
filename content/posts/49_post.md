@@ -1,5 +1,5 @@
 +++
-title = "49. Making my own Teeny Tiny Compiler - Part 1"
+title = "49. Making my own Teeny Tiny Compiler - Lexer"
 date = 2023-12-18
 
 +++
