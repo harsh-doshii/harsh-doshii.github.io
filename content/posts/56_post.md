@@ -1,5 +1,5 @@
 +++
-title = "56. Learning Rust ep2 - Cargo"
+title = "56. Cargo in Rust"
 date = 2023-12-25
 
 +++
