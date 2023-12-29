@@ -1,5 +1,5 @@
 +++
-title = "53. try-catch-finally throw and throws"
+title = "53. try-catch-finally"
 date = 2023-12-22
 
 +++
