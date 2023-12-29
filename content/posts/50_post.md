@@ -33,4 +33,3 @@ nl ::= '\n'+
 ```
 
 When implementing the parser, each of these grammar rules will get their own function in the Python code. It is a one-to-one mapping from grammar to code.
-
