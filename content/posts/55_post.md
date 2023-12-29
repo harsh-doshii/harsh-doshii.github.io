@@ -1,5 +1,5 @@
 +++
-title = "55. Starting my Rust learning journey"
+title = "55. Learning Rust ep1 - Hello World"
 date = 2023-12-24
 
 +++
@@ -11,7 +11,7 @@ Today I learnt:
 2. We will download Rust through rustup (a command line tool for managing Rust versions and associated tools).
 3. You will also need a linker, which is a program that Rust uses to join its compiled outputs into one file. C compiler acts as a linker.
 4. A rust file is a .rs file.
-5. Hello world looks like this: 
+5. Hello world looks like this:
 
 ```rust
 fn main() {
