@@ -1,6 +1,6 @@
 +++
 title = "72. Data Warehouse and Data Lake"
-date = 2024-03-20
+date = 2024-03-19
 
 +++
 
