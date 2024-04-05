@@ -8,7 +8,6 @@ This list is an OR list.
 
 1. Study at UCSD/GaTech
 2. Work at Zerodha
-3. Work at Eightfold
-4. Work at Google
+3. Work at Google
 
 If anyone is fullfilled I will be a happy man.
