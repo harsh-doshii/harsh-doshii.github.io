@@ -5,7 +5,7 @@ date = 2024-04-05
 +++
 There are a lot of notifications that are being triggered in short time, which is causing notification spamming. This is in turn causes un-subscription to the SNS. To fix this we need a cool-down/throttling mechanism.
 
-Problem is that this LOC gets hit over 10,000 times in 1 minute, causing email spam (expected) which in turn causes AWS SNS to automatically unsubscribe the members from this email topic (unexpected). This is an AWS poliy to protect consumers against the spma. LOC:
+Problem is that this LOC gets hit over 10,000 times in 1 minute, causing email spam (expected) which in turn causes AWS SNS to automatically unsubscribe the members from this email topic (unexpected). This is an AWS policy to protect consumers against the spma. LOC:
 
 ```py
     self._sns_client.send_notification(self.topic_arn, subject, email)
