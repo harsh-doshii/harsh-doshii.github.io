@@ -18,3 +18,7 @@ It should have an interface of a Sprint Board.
 2. When the User answers these questions, he/she can click publish. Once published this becomes visibile to the User's followes.
 
 3. Only on a specific time period can you update the retroscpective I am thinking it to be from Friday 6pm to Monday 6pm of the timezone that the user is in.
+
+Now I have to start looking into the tech to build this. I am also aiming for a larger project - Life Management tools. Just like we have Product Management tools like JIRA/Asana we need some Life Management tools.
+
+Idea is to start looking into the open source tech that is available for PM tools and give it a LM tool.
