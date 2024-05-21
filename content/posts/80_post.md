@@ -1,5 +1,5 @@
 +++
-title = "80. Difference between Virtual Env and Docker
+title = "80. Difference between Virtual Env and Docker"
 date = 2024-05-21
 
 +++
