@@ -1,6 +1,6 @@
 +++
 title = "81. Structured Events: Fundamental Blocks of Observability"
-date = 2024-05-21
+date = 2024-05-26
 
 +++
 
