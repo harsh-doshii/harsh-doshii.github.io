@@ -7,8 +7,11 @@ date = 2024-06-07
 In Spring, @Component and @Bean are used to define beans, but they are used in different contexts and have different implications. Here’s a detailed comparison:
 
 @Component
+
 Annotation: @Component is a class-level annotation.
+
 Purpose: It is used to mark a class as a Spring-managed component. Spring will automatically detect these classes through classpath scanning and register them as beans in the application context.
+
 Usage: It is typically used to annotate implementation classes that you want to be automatically discovered by Spring.
 Stereotype Annotations: @Component is the generic form, while @Service, @Repository, and @Controller are specializations with specific semantics:
 
@@ -24,9 +27,13 @@ public class S3Client {
 ```
 
 @Bean
+
 Annotation: @Bean is a method-level annotation.
+
 Purpose: It is used to declare a bean within a Spring configuration class. Methods annotated with @Bean return objects that will be registered as beans in the Spring application context.
+
 Usage: It provides more control over the instantiation and configuration of beans. You can use it to create beans from third-party classes or when you need to apply complex initialization logic.
+
 Configuration Class: Methods annotated with @Bean are typically within a class annotated with @Configuration.
 Example:
 
