@@ -1,6 +1,6 @@
 +++
 title = "88. Way to by-pass private access modifier"
-date = 2024-06-11
+date = 2024-06-12
 
 +++
 
