@@ -26,7 +26,7 @@ public class InterfaceDemo
 }
 ```
 
-We obviously cannot instantiate an Interface, `Abc obj = new Abc();` is not allowed. We always need an implementation of an interface before instantiating an object. Basically what we are doing here is writing the implementation in the `Abc obj = ` line.
+We obviously cannot instantiate an Interface, `Abc obj = new Abc();` is not allowed. We always need an implementation of an interface before instantiating an object. Basically what we are doing here is writing the implementation in the `Abc obj =` line.
 It is equivalent to:
 
 ```java
