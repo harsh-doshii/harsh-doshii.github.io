@@ -42,3 +42,6 @@ Converting string to int:
 String str = "12";
 int num3 = Integer.parseInt(str); //num3 becomes 12
 ```
+
+Note: While using the collections framework, you can never use primitives, you mandatorily need to use Wrapper Classes, because Generics require reference types and not primitive types. 
+i.e. `List<int>` is not allowed, only `List<Integer>` is allowed.
