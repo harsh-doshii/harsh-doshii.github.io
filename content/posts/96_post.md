@@ -1,5 +1,5 @@
 +++
-title = "95. Generics"
+title = "96. Generics"
 date = 2024-06-22
 
 +++
