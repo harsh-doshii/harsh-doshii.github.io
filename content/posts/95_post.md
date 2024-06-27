@@ -1,5 +1,5 @@
 +++
-title = "95.Java Collection Framework - Part 1"
+title = "95. Java Collection Framework - Part 1"
 date = 2024-06-21
 
 +++
