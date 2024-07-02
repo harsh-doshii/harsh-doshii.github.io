@@ -4,6 +4,8 @@ date = 2024-06-23
 
 +++
 
+Title is a click-bait? Basically I want to write about the correct uses of Dependency Injections.
+
 Using the new keyword to create objects of other classes within a class often indicates that you're not fully adhering to the DI principle. However, it's not an absolute rule!
  
 Why avoid `new` for dependencies?
