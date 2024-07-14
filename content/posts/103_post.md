@@ -30,7 +30,7 @@ Every morning, I ask myself these broad questions:
 To answer these questions, I no longer need to look at my sprint board; I should have that clarity. Knowing the answers to these questions keeps me on track to finish the overarching goals of that quarter/software release cycle/financial year. It gives me immense confidence every morning when I start work.
 #### 2. Maintaining a daily log-book:
 
-I maintain a simple Google Sheet with just three columns: Date, Things Planned to be Done, Things Done. Just before starting my work, I fill in the Date and Things Planned to be Done column, and at the end of the day, I fill in the Things Done column. I also mention any ad-hoc tasks that come up during the day, blockers I have faced, and so on. I color code the days which are weekends/holidays/PTOs and the days I am on-call. 
+I maintain a simple Google Sheet with just three columns: `Date, Things Planned to be Done, Things Done`. Just before starting my work, I fill in the `Date` and `Things Planned to be Done` columns, and at the end of the day, I fill in the `Things Done` column. I also mention any ad-hoc tasks that come up during the day, blockers I have faced, and so on. I color code the days which are weekends/holidays/PTOs and the days I am on-call. 
 
 I have logged around 200+ days like this, which absolutely unlocks a lot of productivity and helps me keep a self-check on where my time is going. I never fumble during stand-ups and give my updates with utmost confidence.   
 
