@@ -1,5 +1,5 @@
 +++
-title = "104. Why not to rely on AWS console to manage your resources."
+title = "104. Why not to rely on AWS console to manage your AWS resources."
 date = 2024-07-15
 
 +++
@@ -10,7 +10,7 @@ One easy, direct way that you can manage these resources is through the AWS cons
 1. Through terraform all changes are centralized through one place. You will be able to locate where changes happen through code. Doing a change through console will always keep you guessing on what the state is, to find it you will always have to go to the console. Referring to the code is way easier than referring to the console.
 2. We can enable versioning, so we can revert if a change is wrong.
 3. Envs can be mirrored (dev, stage, prod) and be identical. You can have a particular config in dev, then promote the _exact same_ thing to stage and prod easily.
-4. Other engineers can review your changes. If an engineer does it through the console, it is happening in-silo.
+4. Other engineers can review your changes. If an engineer makes a change through the console, it is happening in-silo.
 
 The workflow that could work the best:
 1. Make a change in the terraform code. Raise a PR.
@@ -21,5 +21,5 @@ The workflow that could work the best:
 
 Think of it this way, your AWS console is your house, then your terraform code is the design plan for it. Now,
 1. Whatever is in the design will eventually be reflected in the house.
-2. The best way to make a change in the structure of the house is to make changes to the plan first and get it reviewed by the architect before directly making change to the house. This way the design plan and the actual house design are always in sync.
+2. The best way to make a change in the structure of the house is to make changes to the plan first and get it reviewed by the architect before directly making change to the house. This way you are less prone to making errors. Also, the design plan and the actual house design will always be in sync.
 3. Now if you want to share how your house looks like, you can just share the design, you don't need to go to the troubles of calling that person to your house!
