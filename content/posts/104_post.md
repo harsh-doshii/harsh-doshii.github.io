@@ -1,5 +1,5 @@
 +++
-title = "104. Good practices to manage your AWS resources"
+title = "104. Why not to rely on AWS console to manage your resources."
 date = 2024-07-15
 
 +++
