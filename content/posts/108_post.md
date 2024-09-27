@@ -51,27 +51,4 @@ The Non-Goals section clarifies what is out of scope for the project. It ensures
 A good section here will include:
 1. Explicitly Out of Scope: Specific features, functionalities, or aspects of the system that the project will not handle. 
 2. Limitations: Areas where the project will not attempt to make changes or improvements. 
-3. Future Work (if applicable): Sometimes non-goals may point to future work, but they are not part of the current project.    CalculatorService calculatorService;
-    
-    @InjectMocks
-    MathApplication mathApplication;
-    
-    @Before
-    public void setup() {
-        MockitoAnnotations.openMocks(this);
-    }
-    
-    //mocking:
-    when(calculatorServiceMock.multiply(10, 20)).thenReturn(200);
-
-    //Now the mathApp uses the mocked object
-    int result = mathApplication.calculate(10, 20);
-    assertEquals(200, result);
-}
-```
-
-Note:
-`@Mocks`: Instantiates those dependencies that will be used by the class under test.
-`@InjectMocks`: Instantiates the class under test.
-
-`MockitoAnnotations.openMocks(this);` is required if using these annotations.
+3. Future Work (if applicable): Sometimes non-goals may point to future work, but they are not part of the current project.
