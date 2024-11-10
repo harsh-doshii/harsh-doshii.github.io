@@ -1,7 +1,8 @@
 +++
-title = "111. The Spirit of Kashish"
-date = 2024-10-27
- 
+title = "celebrating Kashish"
+description = ""
+weight = 2
+
 +++
 
 Kashish Shah, MSDS from USC, is no ordinary woman or an ordinary black cat. She is a real badass. 
@@ -17,4 +18,3 @@ It was a job, a job on paper with money and all involved but then what came was 
 Come October, just like plenty other OAs she had an Amazon one. It was 3 hours?? She did it, she did it well. Then she eventually heard back for interviews. From that day onwards she became laser-focussed and every waking hour she was practically solving or at least thinking about a Leetcode problem. Its again not easy to be her - cause her interviews are not confirmed yet - many of us wouldve given up at this point, but she doesn't. She makes a schedule, sticks to it, puts in 12 hours a day prepping for it. All this while battling with things at her home. I constantly wonder, how does she do it? 
 
 But that is just the spirit of Kashish Shah, incoming SDE1 at amazon.
-
