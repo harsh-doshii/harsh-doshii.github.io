@@ -4,7 +4,7 @@ date = 2024-07-12
 
 +++
 
-In the summer of 2022, I landed my first major SWE internship at Salesforce. An amazing place to work. It was a brief 8-week internship, where I was given a project with crystal-clear requirements, a mentor to help me anytime I was blocked, and constant positive feedback for every PR I raised. Honestly, I didn't even do much, but this dream internship was a breeze, and I received a return offer to join Salesforce in 2023, right after my graduation. I left my internship with just one thought:
+In the summer of 2022, I landed my first major SWE internship at Salesforce. An amazing place to work. It was a brief 8-week internship, where I was given a project with crystal-clear requirements, a mentor to help me anytime I was blocked, and constant appreciation for every PR that I raised. Honestly, I didn't even do much, but this dream internship was a breeze, and I received a return offer to join Salesforce in 2023, right after my graduation. I left my internship with just one thought:
 
 _Damn, working in software is so easy, anyone can do this! In the end, Googling/StackOverflow/Teammates/LLMs (recent) will eventually solve all your problems._
 
@@ -40,13 +40,13 @@ For example, if the doc title is just "Secrets Migration," which actually contai
 Needless to say, especially as a junior engineer, I learn a ton of new things every day. On days that I don't, I make it a point to ask questions, read something, dive into the internals of what I am working on, linger around the info docs, and so on. Then I make short notes of it and put it in this blog. This helps retain things in my memory for a long time and adds a lot to my confidence as a SWE.
 
 #### 4. Maintaining Progress docs:
-I came across this hack somewhere online. Let's say I am working on a project named "Kraken." I would create a "kraken.txt" file locally, and inside it, I would document every single process, steps to do a certain thing, latest updates, questions I have, solutions I found, relevant Slack threads, related docs, etc. Two good things here: I add things chronologically, not in random places. And because this is in my natural language, it becomes super easy to query through!
+I came across this hack somewhere online. Let's say I am working on a project named "zeus." I would create a "zeus.txt" file locally, and inside it, I would document every single process, steps to do a certain thing, latest updates, questions I have, solutions I found, relevant Slack threads, related docs, etc. Two good things here: I add things chronologically, not in random places. And because this is in my natural language, it becomes super easy to query through!
 
 #### 5. Drilling down on goals: 
 Every morning, I ask myself these broad questions:
    1. In this sprint, what am I working on?
    2. In the next sprint, what will I be working on?
-To answer these questions, I no longer need to look at my sprint board; The repetition in my head has given me that clarity. Knowing the answers to these questions keeps me on track to finish the overarching goals of that quarter/software release cycle/financial year. It gives me immense confidence every morning when I start work.
+I answer these questions without referring to the sprint board. Repeating them in my head has helped solidify my focus and priorities. This practice keeps me aligned with the overarching goals of the quarter, software release cycle, or financial year. Starting each day with this clarity not only keeps me on track but also boosts my confidence as I dive into my work.
 
 
 
