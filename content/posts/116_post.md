@@ -1,6 +1,6 @@
 +++
 title = "116. Future of SWE tutorials"
-date = 2025-22-01
+date = 2025-01-22
  
 +++
 

@@ -1,6 +1,6 @@
 +++
 title = "115. Notes on Writing beyond the Academy"
-date = 2025-11-01
+date = 2025-01-11
  
 +++
 
