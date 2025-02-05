@@ -26,6 +26,7 @@ menu = [
     { name = "/posts", url = "/posts", weight = 1 },
     { name = "/about", url = "/about", weight = 3 },
     { name = "/people", url = "/people", weight = 3 },
+    { name = "/recommendations", url = "/recommendations", weight = 3 },
 ]
 
 socials = [
