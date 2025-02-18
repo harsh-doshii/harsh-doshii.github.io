@@ -1,6 +1,6 @@
 +++
 title = "2. Youtube Jan'24"
-date = 2025-18-02
+date = 2025-02-18
 
 +++
 
