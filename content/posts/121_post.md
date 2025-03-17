@@ -4,12 +4,11 @@ date = 2025-03-17
  
 +++
 
-We have been querying Database since forever, but can we query through a codebase? Yes we can through CodeQL now. CodeQL stands for Code Query Language.
+We have been querying Database since forever, but can we query through a codebase? Yes we can through CodeQL!
 
 Wait, how is searching through a codebase, through simple text search in IDE different from querying?
-Searching through a codebase using an IDE's search functionality and querying with CodeQL serve different purposes and have different capabilities.
 
-Most IDEs provide basic and advanced search capabilities, such as: Keyword search, Regex, Finding References to locate function or variable usages, etc. However, these searches are mostly syntactic—they work by finding literal text matches or simple patterns but do not analyze code semantics (i.e., meaning, relationships, or data flow).
+Searching through a codebase using an IDE's search functionality and querying with CodeQL serve different purposes and have different capabilities.Most IDEs provide basic and advanced search capabilities, such as: Keyword search, Regex, Finding References to locate function or variable usages, etc. However, these searches are mostly syntactic—they work by finding literal text matches or simple patterns but do not analyze code semantics (i.e., meaning, relationships, or data flow).
 
 On the other hand, CodeQL is a powerful static analysis tool that allows you to query a codebase semantically rather than just searching for text patterns. It:
 
