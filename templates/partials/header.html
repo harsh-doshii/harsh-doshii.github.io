@@ -65,6 +65,11 @@
     {# Favicon #}
     <link rel="icon" type="image/png" href={{ config.extra.favicon }} />
 
+    {# Stainless-inspired fonts from Google Fonts #}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+
     {# Font from cdn or disk #}
     {% if config.extra.use_cdn | default(value=false) %}
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css">
