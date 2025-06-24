@@ -1,0 +1,122 @@
+// Typography Enhancement for Apollo Theme
+// Using Stainless-inspired fonts with original Apollo colors
+
+:root {
+  // Stainless-inspired font stack
+  --font-body: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  --font-heading: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  --font-mono: "IBM Plex Mono", "Roboto Mono", "SF Mono", Monaco,
+    "Cascadia Code", Consolas, "Courier New", monospace;
+
+  // Override Apollo fonts while keeping original colors
+  --text-font: var(--font-body);
+  --header-font: var(--font-heading);
+  --code-font: var(--font-mono);
+}
+
+// Enhanced typography using Apollo's existing colors
+html {
+  font-family: var(--text-font) !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Enhanced heading styles with better typography
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+
+// Enhanced paragraph styling
+p {
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+
+// Enhanced link styling
+a {
+  font-family: var(--font-body);
+  transition: all 0.2s ease-in-out;
+}
+
+// Enhanced code styling
+code {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 400;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+}
+
+pre {
+  font-family: var(--font-mono);
+
+  code {
+    font-family: var(--font-mono);
+    padding: 0;
+  }
+}
+
+// Enhanced list styling
+ul,
+ol {
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+
+// Enhanced table styling
+table {
+  font-family: var(--font-body);
+}
+
+// Enhanced blockquote styling
+blockquote {
+  font-family: var(--font-body);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+// Form elements
+input,
+textarea,
+select,
+button {
+  font-family: var(--font-body);
+}
+
+// Navigation elements
+nav {
+  font-family: var(--font-body);
+}
+
+// Other text elements
+strong,
+b {
+  font-weight: 600;
+}
+
+em,
+i {
+  font-style: italic;
+}
+
+// Ensure consistent typography across all elements
+* {
+  font-family: inherit;
+}
