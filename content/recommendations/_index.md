@@ -1,6 +1,6 @@
 +++
 paginate_by = 7
-path = "recommendations"
+paginate_path = "recommendations"
 title = "Recommendations"
 sort_by = "date"
 +++
