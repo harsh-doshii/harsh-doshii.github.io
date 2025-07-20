@@ -1,5 +1,5 @@
 +++
-title = "127. What Happens When You Open Chrome: A High Level View of Core CS Concepts"
+title = "127. What Happens When You Open Chrome: A High Level View of CS Concepts"
 date = 2025-07-19
 +++
 
