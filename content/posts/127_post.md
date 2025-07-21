@@ -30,7 +30,7 @@ Task: Opening Google Chrome
     - Virtual Memory:
         - The OS gives the process its own virtual address space.
         - Virtual memory gives each process a clean, isolated view of memory while letting the OS control, protect, and efficiently manage the real physical RAM.
-        - Chrome access memory through a virtual address which is then mapped to a physical address on the RAM.
+        - Chrome accesses memory through a virtual address which is then mapped to a physical address on the RAM.
     - System Calls:
         - Chrome makes syscalls like fork(), exec(), mmap(), open(), etc. to interact with the OS.
         - For example, if you create a new tab, Chrome will make a fork() syscall to create a new process.
