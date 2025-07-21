@@ -29,7 +29,8 @@ Task: Opening Google Chrome
         - Chrome may soon create multiple threads/processes — for UI, renderer, network, etc.
     - Virtual Memory:
         - The OS gives the process its own virtual address space.
-        - Memory regions: code, stack, heap, libraries, etc.
+        - Virtual memory gives each process a clean, isolated view of memory while letting the OS control, protect, and efficiently manage the real physical RAM.
+        - Chrome access memory through a virtual address which is then mapped to a physical address on the RAM.
     - System Calls:
         - Chrome makes syscalls like fork(), exec(), mmap(), open(), etc. to interact with the OS.
         - For example, if you create a new tab, Chrome will make a fork() syscall to create a new process.
@@ -38,7 +39,7 @@ Task: Opening Google Chrome
     - Computer Architecture / Microprocessors:
         - The CPU fetches, decodes, and executes the machine instructions, which come from the loaded Chrome binary.
         - The compiled binary uses an ISA (e.g., x86, ARM), which the CPU understands.
-        - Data and instructions are loaded into L1/L2/L3 CPU caches for speed.
+        - Data and instructions are loaded into L1/L2/L3 CPU caches for speed. The CPU cache helps speed up repeated access to data like HTML, JavaScript, DOM trees, images, etc.
 
 4. Chrome starts up: Code executes.
     - Compilers and Languages:
