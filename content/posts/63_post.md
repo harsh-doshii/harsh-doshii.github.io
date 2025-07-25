@@ -1,5 +1,5 @@
 +++
-title = "63.  Learning Kuberenetes Day 3"
+title = "63.  Learning Kubernetes Day 3"
 date = 2024-01-01
 
 +++
@@ -46,7 +46,7 @@ Till here we dealt with a single pod definition. To make the application highly 
 Let's say we want 5 pods in 2 VMs. How do we do it?
 
 a kind: Pod definition allows creation of only 1 pod. We need to change that. Here comes in kubernetes controllers.
-Kuberenetes controllers are an abstraction layer around a single/group of pods for an app
+Kubernetes controllers are an abstraction layer around a single/group of pods for an app
 Controller can create and manage a single/group od pods
 Types of controllers:
 1. ReplicaSet

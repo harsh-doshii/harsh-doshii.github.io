@@ -1,5 +1,5 @@
 +++
-title = "61. Learning Kuberenetes Day 1"
+title = "61. Learning Kubernetes Day 1"
 date = 2023-12-30
 
 +++
