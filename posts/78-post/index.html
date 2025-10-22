@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+
+    
+    
+    
+    <title>
+         78. The Path to Observability
+        
+    </title>
+
+        
+            <meta property="og:title" content="78. The Path to Observability" />
+        
+     
+
+     
+         
+     
+
+     
+         
+    
+
+    
+    <link rel="icon" type="image/png" href=&#x2F;icons&#x2F;icon.png />
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    
+    
+        <link href=https://harsh-doshii.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="doshi&#x27;s scratchpad" href="https://harsh-doshii.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://harsh-doshii.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://harsh-doshii.github.io/theme/dark.css" />
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://harsh-doshii.github.io/main.css />
+
+    
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-170818569-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-170818569-1');
+    </script>
+
+    <script async src="https://us.umami.is/script.js" data-website-id="2b0e0e64-98d6-464b-8574-2cb94d848738"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body);"></script>
+</head>
+
+<body>
+    <div class="content">
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;harsh-doshii.github.io&#x2F;>doshi&#x27;s scratchpad</a>
+
+        <div class="socials">
+            
+            <a rel="me" href="https:&#x2F;&#x2F;discuss.systems&#x2F;@hdoshi" class="social">
+                <img alt=mastodon src="/social_icons/mastodon.svg">
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;harsh-doshi16&#x2F;" class="social">
+                <img alt=linkedin src="/social_icons/linkedin.svg">
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;harsh-doshii" class="social">
+                <img alt=github src="/social_icons/github.svg">
+            </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+        <a href=&#x2F;posts style="margin-left: 0.7em">&#x2F;posts</a>
+        
+        <a href=&#x2F;about style="margin-left: 0.7em">&#x2F;about</a>
+        
+        <a href=&#x2F;people style="margin-left: 0.7em">&#x2F;people</a>
+        
+        <a href=&#x2F;recommendations style="margin-left: 0.7em">&#x2F;recommendations</a>
+        
+
+        
+        | <a id="dark-mode-toggle" onclick="toggleTheme()" href="javascript:void(0)">
+            <img src="/feather/sun.svg" id="sun-icon" style="filter: invert(1);" />
+            <img src="/feather/moon.svg" id="moon-icon" />
+        </a>
+        <script src=https://harsh-doshii.github.io/js/themetoggle.js></script>
+        
+    </nav>
+</header>
+
+
+        
+        
+    
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        78. The Path to Observability<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2024-04-28</time>
+                    
+
+                    
+                </div>
+        </div>
+
+        
+
+        
+        
+            
+                <h1>Table of Contents</h1>
+                <ul>
+                
+                    <li>
+                        <a href="https://harsh-doshii.github.io/posts/78-post/#difference-between-observability-and-monitoring">Difference between Observability and Monitoring</a>
+                        
+                    </li>
+                
+                    <li>
+                        <a href="https://harsh-doshii.github.io/posts/78-post/#definition-of-observability-from-mathematical-standpoint">Definition of Observability from Mathematical Standpoint</a>
+                        
+                    </li>
+                
+                    <li>
+                        <a href="https://harsh-doshii.github.io/posts/78-post/#definition-of-observability-from-swe-standpoint">Definition of Observability from SWE standpoint</a>
+                        
+                    </li>
+                
+                    <li>
+                        <a href="https://harsh-doshii.github.io/posts/78-post/#debugging-with-metrics-versus-observability">Debugging with Metrics Versus Observability</a>
+                        
+                    </li>
+                
+                    <li>
+                        <a href="https://harsh-doshii.github.io/posts/78-post/#the-role-of-cardinality">The Role of Cardinality</a>
+                        
+                    </li>
+                
+                    <li>
+                        <a href="https://harsh-doshii.github.io/posts/78-post/#the-role-of-dimensionality">The Role of Dimensionality</a>
+                        
+                    </li>
+                
+                    <li>
+                        <a href="https://harsh-doshii.github.io/posts/78-post/#debugging-with-observability">Debugging with Observability</a>
+                        
+                    </li>
+                
+                </ul>
+            
+        
+
+        <section class="body">
+            <p>Observability is an upcoming doamin within SWE. I have dabbled with it before, during my internship in Flipkart, where in I used Jaeger, Open Telementery, Grafan and Prometheus to tinker around with stuff and built a tracing library for my team. Now I think it is a good time to dive deeper into it and become a SME. I want to carve a niche in this field. For that I am starting with this book Observability Engineering by Charity Majors, Liz Fong-Jones, George Miranda on O'Reilly. I will make blogs to note my key take-aways from this book.</p>
+<h2 id="difference-between-observability-and-monitoring">Difference between Observability and Monitoring</h2>
+<p>Even though both terms are being used interchangeably in the industry these days, Observability SMEs scoff at it.</p>
+<blockquote>
+<p>What separates monitoring from observability is the state space of system behavior, and moreover, how one might wish to explore the state space and at precisely what level of detail. By “state space,” I’m referring to all the possible emergent behaviors a system might exhibit during various phases: starting from when the system is being designed, to when the system is being developed, to when the system is being tested, to when the system is being deployed, to when the system is being exposed to users, to when the system is being debugged over the course of its lifetime. The more complex the system, the ever expanding and protean the state space.
+Observability allows for this state space to be painstakingly mapped out and explored in granular detail with a fine-tooth comb. Such meticulous exploration is often required to better understand unpredictable, long-tail, or multimodal distributions in system behavior. Monitoring, in contrast, provides an approximation of overall system health in broad brushstrokes.</p>
+</blockquote>
+<h2 id="definition-of-observability-from-mathematical-standpoint">Definition of Observability from Mathematical Standpoint</h2>
+<p>In control theory, observability is defined as a measure of how well internal states of a system can be inferred from knowledge of its external outputs.</p>
+<h2 id="definition-of-observability-from-swe-standpoint">Definition of Observability from SWE standpoint</h2>
+<p>Definition of “observability” for software systems is a measure of how well you can understand and explain any state your system can get into, no matter how novel or bizarre. You must be able to comparatively debug that bizarre or novel state across all dimensions of system state data, and combinations of dimensions, in an ad hoc iterative investigation, without being required to define or predict those debugging needs in advance. If you can understand any bizarre or novel state without needing to ship new code, you have observability.</p>
+<h2 id="debugging-with-metrics-versus-observability">Debugging with Metrics Versus Observability</h2>
+<p>The metrics-based approach of monitoring relies on having encountered known failure modes in the past. Monitoring helps detect when systems are over or under predictable thresholds that someone has previously deemed an anomaly. Modern distributed systems architectures notoriously fail in novel ways that no one is able to predict and that no one has experienced before.</p>
+<p>Debugging with metrics requires you to connect dozens of disconnected metrics that were recorded over the course of executing any one particular request, across any number of services or machines, to infer what might have occurred over the various hops needed for its fulfillment. Debugging with observability starts with a very different substrate: a deep context of what was happening when this action occurred. Debugging with observability is about preserving as much of the context around any given request as possible, so that you can reconstruct the environment and circumstances that triggered the bug that led to a novel failure mode. Monitoring is for the known-unknowns, but observability is for the unknown-unknowns.</p>
+<h2 id="the-role-of-cardinality">The Role of Cardinality</h2>
+<p>Cardinality: In the context of databases, cardinality refers to the uniqueness of data values contained in a set. Low cardinality means that a column has a lot of duplicate values in its set. High cardinality means that the column contains a large percentage of completely unique values. Cardinality matters for observability, because high-cardinality information is almost always the most useful in identifying data for debugging or understanding a system.</p>
+<h2 id="the-role-of-dimensionality">The Role of Dimensionality</h2>
+<p>While cardinality refers to the uniqueness of the values within your data, dimensionality refers to the number of keys within that data. Each dimension is a key-value pair. Imagine that you have an event schema that defines six high-cardinality dimensions per event: time, app, host, user, endpoint, and status. With those six dimensions, you can create queries that analyze any combination of dimensions to surface relevant patterns that may be contributing to anomalies. High-dimensionality data provides greater context about how those intersections unfold.</p>
+<h2 id="debugging-with-observability">Debugging with Observability</h2>
+<p>Observability tools are specifically designed to query against high-cardinality, high-dimensionality data. With observability, you iteratively investigate conditions you care about by exploring your data to see what it can reveal about the state of your system. You ask a question that you did not need to predict in advance to find answers or clues that will lead you to ask the next question, and the next, and the next. You repeat that pattern again and again until you find the needle in the proverbial haystack that you’re looking for. A key function of observable systems is the ability to explore your system in open-ended ways.</p>
+<p>This finishes chapter 1 of the book. More to follow in upcomign blogs.</p>
+
+        </section>
+
+        
+
+    </article>
+</main>
+
+
+    </div>
+</body>
+
+</html>
