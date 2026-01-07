@@ -1,5 +1,5 @@
 +++
-title = "133. From being a "Liver" to fighting for one"
+title = "133. From being a 'Liver' to fighting for one"
 date = 2026-07-01
 +++
 
