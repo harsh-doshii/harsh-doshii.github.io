@@ -12,10 +12,14 @@ I was recently diagnosed with an abscess in my liver. No, that doesn’t mean my
 1. When you are sick you have tremendous selective attention.
 
 Have you ever thought of or bought a new car, and then everywhere on the streets you just notice that particular car? That’s because of your selective attention (technically called the Baader–Meinhof phenomenon, also known as the frequency illusion). When you are sick out of your wits, something similar happens. Now whenever I see a stranger on the street or even a loved one, the only thing I think about is their liver and how fine it is for them.
-"Ah, his liver must be alright" — I think as I look at a hawker from my window.
+"Ah, his liver must be alright" - I think as I look at a hawker from my window.
+
 I started associating everything in life with my liver and its well-being. My life is now divided into two parts:
+
 BC: Before Cyst
+
 AD: After Discharge (from hospital)
+
 Selective attention takes a mental toll on the patient, the secret to dealing with it is in the next point!
 
 ---
@@ -29,7 +33,7 @@ Hey reader, if you have someone you remotely know going through anything remotel
 
 3. YOLO and kindness
 
-When you are sick (and you know it’s temporary), you learn that this can happen to anyone at any time and it can turn their world upside down. Sickness is a brilliant reminder of how temporary “okay” is. Sure you are okay right now, but tomorrow? We don’t know. This is in no way to look at life in a depressing way, but rather: “sure you are okay right now, but tomorrow? We don’t know. HENCE, WE SHOULD MAKE THE MOST OF TODAY”. I have planned a gazillion projects to pursue, things to do, life to live after my physical battles end. This makes me think why did I hold back at all in the first place? Being fit is a blessing that one seldom appreciates, we all should do it more, because YOLO, right! This also extends to the fact that we must be kinder—to everyone we know, to ourselves too. The world in itself is full of pain and misery, the best we can do is bring the pain down for others. The person you dislike today can be suffering through a really painful physical ordeal against their wishes, the least one can do is show them kindness!
+When you are sick (and you know it’s temporary), you learn that this can happen to anyone at any time and it can turn their world upside down. Sickness is a brilliant reminder of how temporary “okay” is. Sure you are okay right now, but tomorrow? We don’t know. This is in no way to look at life in a depressing way, but rather: “sure you are okay right now, but tomorrow? We don’t know. HENCE, WE SHOULD MAKE THE MOST OF TODAY”. I have planned a gazillion projects to pursue, things to do, life to live after my physical battles end. This makes me think why did I hold back at all in the first place? Being fit is a blessing that one seldom appreciates, we all should do it more, because YOLO, right! This also extends to the fact that we must be kinder - to everyone we know, to ourselves too. The world in itself is full of pain and misery, the best we can do is bring the pain down for others. The person you dislike today can be suffering through a really painful physical ordeal against their wishes, the least one can do is show them kindness!
 
 ---
 
