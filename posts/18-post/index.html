@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+
+    
+    
+    
+    <title>
+         18. Namespace
+        
+    </title>
+
+        
+            <meta property="og:title" content="18. Namespace" />
+        
+     
+
+     
+         
+     
+
+     
+         
+    
+
+    
+    <link rel="icon" type="image/png" href=&#x2F;icons&#x2F;icon.png />
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    
+    
+        <link href=https://harsh-doshii.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="doshi&#x27;s scratchpad" href="https://harsh-doshii.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://harsh-doshii.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://harsh-doshii.github.io/theme/dark.css" />
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://harsh-doshii.github.io/main.css />
+
+    
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-170818569-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-170818569-1');
+    </script>
+
+    <script async src="https://us.umami.is/script.js" data-website-id="2b0e0e64-98d6-464b-8574-2cb94d848738"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body);"></script>
+</head>
+
+<body>
+    <div class="content">
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;harsh-doshii.github.io&#x2F;>doshi&#x27;s scratchpad</a>
+
+        <div class="socials">
+            
+            <a rel="me" href="https:&#x2F;&#x2F;discuss.systems&#x2F;@hdoshi" class="social">
+                <img alt=mastodon src="/social_icons/mastodon.svg">
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;harsh-doshi16&#x2F;" class="social">
+                <img alt=linkedin src="/social_icons/linkedin.svg">
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;harsh-doshii" class="social">
+                <img alt=github src="/social_icons/github.svg">
+            </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+        <a href=&#x2F;posts style="margin-left: 0.7em">&#x2F;posts</a>
+        
+        <a href=&#x2F;about style="margin-left: 0.7em">&#x2F;about</a>
+        
+        <a href=&#x2F;people style="margin-left: 0.7em">&#x2F;people</a>
+        
+        <a href=&#x2F;recommendations style="margin-left: 0.7em">&#x2F;recommendations</a>
+        
+
+        
+        | <a id="dark-mode-toggle" onclick="toggleTheme()" href="javascript:void(0)">
+            <img src="/feather/sun.svg" id="sun-icon" style="filter: invert(1);" />
+            <img src="/feather/moon.svg" id="moon-icon" />
+        </a>
+        <script src=https://harsh-doshii.github.io/js/themetoggle.js></script>
+        
+    </nav>
+</header>
+
+
+        
+        
+    
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        18. Namespace<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2023-11-17</time>
+                    
+
+                    
+                </div>
+        </div>
+
+        
+
+        
+        
+            
+        
+
+        <section class="body">
+            <p>Namespace is a common term that one can hear in the world of computers. Namespace comes up in C++, File Systems, k8s and so on. Todaym, I am looking to define it clearly for a better understanding. </p>
+<p>Wikipedia defines it as: In computing, a namespace is a set of signs (names) that are used to identify and refer to objects of various kinds. A namespace ensures that all of a given set of objects have unique names so that they can be easily identified.</p>
+<p>As an analogy, consider a system of naming of people where each person has a given name, as well as a family name shared with their relatives. If the first names of family members are unique only within each family, then each person can be uniquely identified by the combination of first name and family name; there is only one (let's take it) Harsh Doshi, though there may be many Harsh. Within the namespace of the Doshi family, just &quot;Harsh&quot; suffices to unambiguously designate this person, while within the &quot;global&quot; namespace of all people, the full name must be used.</p>
+<p>Namespaces are a way to organize things. In Kubernetes, namespaces are a way to organize clusters into sub-clusters. Namespaces cannot be nested within each other. You can loosely think of namespace as &quot;scope&quot;.</p>
+
+        </section>
+
+        
+
+    </article>
+</main>
+
+
+    </div>
+</body>
+
+</html>

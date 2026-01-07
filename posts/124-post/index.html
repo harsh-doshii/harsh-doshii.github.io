@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+
+    
+    
+    
+    <title>
+         124. Agents, 01: Intro to Transformers &amp; LLMs
+        
+    </title>
+
+        
+            <meta property="og:title" content="124. Agents, 01: Intro to Transformers &amp; LLMs" />
+        
+     
+
+     
+         
+     
+
+     
+         
+    
+
+    
+    <link rel="icon" type="image/png" href=&#x2F;icons&#x2F;icon.png />
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    
+    
+        <link href=https://harsh-doshii.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="doshi&#x27;s scratchpad" href="https://harsh-doshii.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://harsh-doshii.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://harsh-doshii.github.io/theme/dark.css" />
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://harsh-doshii.github.io/main.css />
+
+    
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-170818569-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-170818569-1');
+    </script>
+
+    <script async src="https://us.umami.is/script.js" data-website-id="2b0e0e64-98d6-464b-8574-2cb94d848738"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body);"></script>
+</head>
+
+<body>
+    <div class="content">
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;harsh-doshii.github.io&#x2F;>doshi&#x27;s scratchpad</a>
+
+        <div class="socials">
+            
+            <a rel="me" href="https:&#x2F;&#x2F;discuss.systems&#x2F;@hdoshi" class="social">
+                <img alt=mastodon src="/social_icons/mastodon.svg">
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;harsh-doshi16&#x2F;" class="social">
+                <img alt=linkedin src="/social_icons/linkedin.svg">
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;harsh-doshii" class="social">
+                <img alt=github src="/social_icons/github.svg">
+            </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+        <a href=&#x2F;posts style="margin-left: 0.7em">&#x2F;posts</a>
+        
+        <a href=&#x2F;about style="margin-left: 0.7em">&#x2F;about</a>
+        
+        <a href=&#x2F;people style="margin-left: 0.7em">&#x2F;people</a>
+        
+        <a href=&#x2F;recommendations style="margin-left: 0.7em">&#x2F;recommendations</a>
+        
+
+        
+        | <a id="dark-mode-toggle" onclick="toggleTheme()" href="javascript:void(0)">
+            <img src="/feather/sun.svg" id="sun-icon" style="filter: invert(1);" />
+            <img src="/feather/moon.svg" id="moon-icon" />
+        </a>
+        <script src=https://harsh-doshii.github.io/js/themetoggle.js></script>
+        
+    </nav>
+</header>
+
+
+        
+        
+    
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        124. Agents, 01: Intro to Transformers &amp; LLMs<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2025-06-24</time>
+                    
+
+                    
+                </div>
+        </div>
+
+        
+
+        
+        
+            
+        
+
+        <section class="body">
+            <p>Let's start with LM, Language Models first;
+Language models can, at a very abstract level, be thought of as functions. Given an input sentence, the function outputs the next word based on probability.</p>
+<p>Now, let's add some more nuance to it.</p>
+<ol>
+<li>The output is not deterministic (unless forced), hence it should be thought of a as <em>probablistic function</em>.</li>
+<li>Token is the more correct replacement for &quot;word&quot;. A token can be a word, a part of word or even punctuation.</li>
+</ol>
+<p>Hence, a better way to think about LMs is:
+At a high level, language models can be viewed as probabilistic functions. Given an input sequence of tokens, they output a probability distribution over possible next tokens, from which the next token is selected.</p>
+<p>Large Language Models (LLMs) have the same basic idea, but these are the models which have a distinction of being trained over a massive amount of data, and often contain billions or parameters. This makes the LLM capable of deep semantic patterns in languages, reasoning abilities, coding skills, etc.</p>
+<p>A LM can find the next word in the sentence: &quot;Humpty Dumpty sat on a.. &quot;, but a LLM could do that and also write the same poem in Gen-z Lingo, etc. An example I generated through GPT-4:</p>
+<p><em>Humpty Dumpty sat on the wall,</em></p>
+<p><em>Big egg energy, vibin’ with it all.</em></p>
+<p><em>Humpty Dumpty had a great fall</em></p>
+<p><em>RIP my guy, that wall did him dirty fr</em></p>
+<p>Apart from just &quot;predicting&quot; the next word like LMs, LLMs can also generate and reason.</p>
+<p>Now, let's talk about transformers.</p>
+<p>Transformers are a type of Neural Network architecture, well suited to handle large sequential data - especially text, through a mechanism called &quot;self-attention&quot;. Attention is the mechanism that separates Transformers from RNNs and CNNs.</p>
+<p>The function of transformers is to take in token embeddings (vectors) and transform them into richer, contextualized vectors using self-attention and feedforward layers. These vectors are then passed through a linear and softmax layer to predict the next token in language modeling tasks.</p>
+<p>Large Language Models (LLMs) can, in theory, be built using different neural network architectures, but in practice, Transformers have become the dominant architecture. For example, GPT-3 is an LLM based on the GPT architecture, which is a type of transformer model.</p>
+
+        </section>
+
+        
+
+    </article>
+</main>
+
+
+    </div>
+</body>
+
+</html>
