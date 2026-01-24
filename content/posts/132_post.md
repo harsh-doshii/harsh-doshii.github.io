@@ -1,6 +1,6 @@
 +++
 title = "132. What is a RAG"
-date = 2026-06-01
+date = 2026-01-06
 +++
 
 LLMs are awesome to get reasoned information - but what about when you want reasoning capabilities on data that the LLM has not been trained on? Think of a case in which you want to get information (retrieve) from internal documentations or your own whatsapp chats or your own essays. This is where Retrieval-Augmented Generation (RAG) comes in. By combining the ability to retrieve specific contextual information with the power of reasoning, RAG enables AI to tap into your unique knowledge base and generate intelligent responses. Retrieval-Augmented Generation literally means that first you retrieve (update context) the right information from knowledge base then augment it with generative AI capabilities.

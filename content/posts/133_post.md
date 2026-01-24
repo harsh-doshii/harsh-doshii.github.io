@@ -1,6 +1,6 @@
 +++
 title = "133. From being a 'Liver' to fighting for one"
-date = 2026-07-01
+date = 2026-01-07
 +++
 
 take-aways from an unsuspected, elongated medical diagnosis.

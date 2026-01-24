@@ -1,6 +1,6 @@
 +++
 title = "131. AI Agents are more than just prompts - Agents and Tools"
-date = 2026-05-01
+date = 2026-01-05
 +++
 
 For most of us, when we think of AI Engineering, we think of just writing Prompts. We import a model/make an api call, supply a prompt and voila the results are out - and we think that agentic development is complete. This is a very shallow view of how AI Agents development is supposed to be done. AI Agents and Agentic Systems are bigger than just answering prompts, they are usually capable of carrying out autonomous end-to-end tasks.
