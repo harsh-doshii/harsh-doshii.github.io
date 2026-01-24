@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+
+    
+    
+    
+    <title>
+         108. Writing the best Design Docs
+        
+    </title>
+
+        
+            <meta property="og:title" content="108. Writing the best Design Docs" />
+        
+     
+
+     
+         
+     
+
+     
+         
+    
+
+    
+    <link rel="icon" type="image/png" href=&#x2F;icons&#x2F;icon.png />
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    
+    
+        <link href=https://harsh-doshii.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="doshi&#x27;s scratchpad" href="https://harsh-doshii.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://harsh-doshii.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://harsh-doshii.github.io/theme/dark.css" />
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://harsh-doshii.github.io/main.css />
+
+    
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-170818569-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-170818569-1');
+    </script>
+
+    <script async src="https://us.umami.is/script.js" data-website-id="2b0e0e64-98d6-464b-8574-2cb94d848738"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body);"></script>
+</head>
+
+<body>
+    <div class="content">
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;harsh-doshii.github.io&#x2F;>doshi&#x27;s scratchpad</a>
+
+        <div class="socials">
+            
+            <a rel="me" href="https:&#x2F;&#x2F;discuss.systems&#x2F;@hdoshi" class="social">
+                <img alt=mastodon src="/social_icons/mastodon.svg">
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;harsh-doshi16&#x2F;" class="social">
+                <img alt=linkedin src="/social_icons/linkedin.svg">
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;harsh-doshii" class="social">
+                <img alt=github src="/social_icons/github.svg">
+            </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+        <a href=&#x2F;posts style="margin-left: 0.7em">&#x2F;posts</a>
+        
+        <a href=&#x2F;about style="margin-left: 0.7em">&#x2F;about</a>
+        
+        <a href=&#x2F;people style="margin-left: 0.7em">&#x2F;people</a>
+        
+        <a href=&#x2F;recommendations style="margin-left: 0.7em">&#x2F;recommendations</a>
+        
+
+        
+        | <a id="dark-mode-toggle" onclick="toggleTheme()" href="javascript:void(0)">
+            <img src="/feather/sun.svg" id="sun-icon" style="filter: invert(1);" />
+            <img src="/feather/moon.svg" id="moon-icon" />
+        </a>
+        <script src=https://harsh-doshii.github.io/js/themetoggle.js></script>
+        
+    </nav>
+</header>
+
+
+        
+        
+    
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        108. Writing the best Design Docs<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2024-09-26</time>
+                    
+
+                    
+                </div>
+        </div>
+
+        
+
+        
+        
+            
+                <h1>Table of Contents</h1>
+                <ul>
+                
+                    <li>
+                        <a href="https://harsh-doshii.github.io/posts/108-post/#1-title">1. Title:</a>
+                        
+                    </li>
+                
+                    <li>
+                        <a href="https://harsh-doshii.github.io/posts/108-post/#2-authors">2. Authors:</a>
+                        
+                    </li>
+                
+                    <li>
+                        <a href="https://harsh-doshii.github.io/posts/108-post/#3-approvers">3. Approvers:</a>
+                        
+                    </li>
+                
+                    <li>
+                        <a href="https://harsh-doshii.github.io/posts/108-post/#4-overview">4. Overview:</a>
+                        
+                    </li>
+                
+                    <li>
+                        <a href="https://harsh-doshii.github.io/posts/108-post/#5-problem-statement">5. Problem Statement:</a>
+                        
+                    </li>
+                
+                    <li>
+                        <a href="https://harsh-doshii.github.io/posts/108-post/#6-goals">6. Goals:</a>
+                        
+                    </li>
+                
+                    <li>
+                        <a href="https://harsh-doshii.github.io/posts/108-post/#7-non-goals">7. Non-Goals:</a>
+                        
+                    </li>
+                
+                </ul>
+            
+        
+
+        <section class="body">
+            <p><strong><em>This doc is a work in progress.</em></strong></p>
+<p>Honestly, it is not that difficult to make a design doc. It is difficult to make a design doc. Here I want to create a template for writing great design docs.</p>
+<h3 id="1-title">1. Title:</h3>
+<p>If you are designing for a major project from scratch you can name it as <em>Project Name - Design</em></p>
+<p>If you are designing a feature for a project you can call it: <em>Project Name | Feature Name - Design</em></p>
+<p>The title should be short and sweet and must include the 'Design' keyword to make it easily searchable in a repo of docs.</p>
+<h3 id="2-authors">2. Authors:</h3>
+<p>Below the title you must mention/cite the authors of the Doc. Writing them in the priority of ownership is not a necessity but its a good thing. </p>
+<h3 id="3-approvers">3. Approvers:</h3>
+<p>Create a table having these columns: Name, Role, Approval Status.
+Role could have things like: Peer, Tech Lead, Architect, Product Owner and Engineering Manager.
+The Approval Status could be things like: Approved, Pending Review, In Progress, Changes Requested, Not Required, Rejected. It is better if it is a drop down.</p>
+<h3 id="4-overview">4. Overview:</h3>
+<p>The Overview provides a high-level summary of the project or feature, giving context and setting the stage for the rest of the document. It outlines what the system or component is supposed to do, why it's being developed, and the broader context or goals.</p>
+<h3 id="5-problem-statement">5. Problem Statement:</h3>
+<p>The Problem Statement section focuses on the specific issue or challenge the project is addressing. It clearly articulates the problem that led to the need for the project or feature. This section helps explain why this solution is necessary and what pain points it will resolve.</p>
+<p>A good section here will include:</p>
+<ol>
+<li>Current Pain Points: Describe the issue(s) or limitations in the current system or process. </li>
+<li>Impact: Explain the negative consequences if the problem isn't addressed. </li>
+<li>Motivation for Change: Why this is a priority now (e.g., technical debt, inefficiencies, user needs).</li>
+</ol>
+<p><em>The Overview gives a sense of &quot;what&quot; the project is about, while the Problem Statement focuses on &quot;why&quot; the project is necessary.</em></p>
+<h3 id="6-goals">6. Goals:</h3>
+<p>The Goals section describes the specific objectives and outcomes the project is aiming to accomplish. It provides a clear and focused understanding of what the project will deliver.</p>
+<p>A good section here will include:</p>
+<ol>
+<li>Primary Objectives: Specific functionalities or improvements that the project will implement. </li>
+<li>Success Criteria: What would be considered successful completion of the project? These could be metrics or qualitative results. </li>
+<li>Expected Impact: What improvements or benefits will result from achieving these goals? </li>
+<li>Alignment with Business/Technical Needs: How the goals contribute to overall business or technical objectives.</li>
+</ol>
+<h3 id="7-non-goals">7. Non-Goals:</h3>
+<p>The Non-Goals section clarifies what is out of scope for the project. It ensures that readers understand the boundaries of the project, so there are no unrealistic expectations. It can also help avoid scope creep by defining what will not be addressed in the current project phase.</p>
+<p>A good section here will include:</p>
+<ol>
+<li>Explicitly Out of Scope: Specific features, functionalities, or aspects of the system that the project will not handle. </li>
+<li>Limitations: Areas where the project will not attempt to make changes or improvements. </li>
+<li>Future Work (if applicable): Sometimes non-goals may point to future work, but they are not part of the current project.</li>
+</ol>
+
+        </section>
+
+        
+
+    </article>
+</main>
+
+
+    </div>
+</body>
+
+</html>

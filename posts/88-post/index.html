@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+
+    
+    
+    
+    <title>
+         88. Way to by-pass private access modifier
+        
+    </title>
+
+        
+            <meta property="og:title" content="88. Way to by-pass private access modifier" />
+        
+     
+
+     
+         
+     
+
+     
+         
+    
+
+    
+    <link rel="icon" type="image/png" href=&#x2F;icons&#x2F;icon.png />
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    
+    
+        <link href=https://harsh-doshii.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="doshi&#x27;s scratchpad" href="https://harsh-doshii.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://harsh-doshii.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://harsh-doshii.github.io/theme/dark.css" />
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://harsh-doshii.github.io/main.css />
+
+    
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-170818569-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-170818569-1');
+    </script>
+
+    <script async src="https://us.umami.is/script.js" data-website-id="2b0e0e64-98d6-464b-8574-2cb94d848738"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body);"></script>
+</head>
+
+<body>
+    <div class="content">
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;harsh-doshii.github.io&#x2F;>doshi&#x27;s scratchpad</a>
+
+        <div class="socials">
+            
+            <a rel="me" href="https:&#x2F;&#x2F;discuss.systems&#x2F;@hdoshi" class="social">
+                <img alt=mastodon src="/social_icons/mastodon.svg">
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;harsh-doshi16&#x2F;" class="social">
+                <img alt=linkedin src="/social_icons/linkedin.svg">
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;harsh-doshii" class="social">
+                <img alt=github src="/social_icons/github.svg">
+            </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+        <a href=&#x2F;posts style="margin-left: 0.7em">&#x2F;posts</a>
+        
+        <a href=&#x2F;about style="margin-left: 0.7em">&#x2F;about</a>
+        
+        <a href=&#x2F;people style="margin-left: 0.7em">&#x2F;people</a>
+        
+        <a href=&#x2F;recommendations style="margin-left: 0.7em">&#x2F;recommendations</a>
+        
+
+        
+        | <a id="dark-mode-toggle" onclick="toggleTheme()" href="javascript:void(0)">
+            <img src="/feather/sun.svg" id="sun-icon" style="filter: invert(1);" />
+            <img src="/feather/moon.svg" id="moon-icon" />
+        </a>
+        <script src=https://harsh-doshii.github.io/js/themetoggle.js></script>
+        
+    </nav>
+</header>
+
+
+        
+        
+    
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        88. Way to by-pass private access modifier<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2024-06-12</time>
+                    
+
+                    
+                </div>
+        </div>
+
+        
+
+        
+        
+            
+        
+
+        <section class="body">
+            <p>Are you also writing unit tests? Do you also want to use a private field in the process? Are you wondering how to do it, cause it just doesnt seem possible! Well you have come to the right place!</p>
+<p>Situation:</p>
+<p>I wanted to write UTs for the following class:</p>
+<pre data-lang="java" class="language-java "><code class="language-java" data-lang="java">public class Demo{
+    private final ObjectMapper objectMapper;
+    private final Filter objectFilter;
+
+    public Demo(String validStatuses){
+        &#x2F;&#x2F;more fields
+        this.objectMapper = ObjectMapperFactory.createObjectMapper();
+        this.objectFilter = new Filter(this.objectMapper, validStatuses);
+    }
+}
+</code></pre>
+<p>I am using this <code>objectMapper</code> and <code>objectFilter</code> later in the methods inside the class. But then how do I call them in the UT?</p>
+<p>Ans: Using the reflection api! Reflection in Java allows you to inspect and modify the runtime behavior of applications. This is useful for unit testing when you need to inject mock dependencies into the class under test, especially when those dependencies are private and not accessible through public methods or constructors.</p>
+<p>So inside my UT, I will do something like this:</p>
+<pre data-lang="java" class="language-java "><code class="language-java" data-lang="java">@BeforeEach
+    void setUp() throws Exception {
+        setPrivateField(demo, &quot;objectMapper&quot;, objectMapper);
+        setPrivateField(demo, &quot;filter&quot;, objectFilter);
+    }
+
+    private void setPrivateField(Object target, String fieldName, Object fieldValue) throws Exception {
+        Field field = target.getClass().getDeclaredField(fieldName);
+        field.setAccessible(true);
+        field.set(target, fieldValue);
+    }
+</code></pre>
+<p>the <code>field.setAccessible(true);</code> bypasses the private access modifier.
+the <code>fields.set(target, fieldValue);</code> translates to something like <code>demo.setObjectMapper(objectMapper);</code></p>
+<p>This was a new problem that I ran into while coding up something. This looks like a decent solution! However I am a bit skeptical of how we are by-passing private access modifiers.</p>
+
+        </section>
+
+        
+
+    </article>
+</main>
+
+
+    </div>
+</body>
+
+</html>

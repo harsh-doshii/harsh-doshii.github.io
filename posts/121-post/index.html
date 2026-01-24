@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+
+    
+    
+    
+    <title>
+         121. Querying code as if it is a DB - CodeQL, an intro
+        
+    </title>
+
+        
+            <meta property="og:title" content="121. Querying code as if it is a DB - CodeQL, an intro" />
+        
+     
+
+     
+         
+     
+
+     
+         
+    
+
+    
+    <link rel="icon" type="image/png" href=&#x2F;icons&#x2F;icon.png />
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    
+    
+        <link href=https://harsh-doshii.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="doshi&#x27;s scratchpad" href="https://harsh-doshii.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://harsh-doshii.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://harsh-doshii.github.io/theme/dark.css" />
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://harsh-doshii.github.io/main.css />
+
+    
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-170818569-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-170818569-1');
+    </script>
+
+    <script async src="https://us.umami.is/script.js" data-website-id="2b0e0e64-98d6-464b-8574-2cb94d848738"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body);"></script>
+</head>
+
+<body>
+    <div class="content">
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;harsh-doshii.github.io&#x2F;>doshi&#x27;s scratchpad</a>
+
+        <div class="socials">
+            
+            <a rel="me" href="https:&#x2F;&#x2F;discuss.systems&#x2F;@hdoshi" class="social">
+                <img alt=mastodon src="/social_icons/mastodon.svg">
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;harsh-doshi16&#x2F;" class="social">
+                <img alt=linkedin src="/social_icons/linkedin.svg">
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;harsh-doshii" class="social">
+                <img alt=github src="/social_icons/github.svg">
+            </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+        <a href=&#x2F;posts style="margin-left: 0.7em">&#x2F;posts</a>
+        
+        <a href=&#x2F;about style="margin-left: 0.7em">&#x2F;about</a>
+        
+        <a href=&#x2F;people style="margin-left: 0.7em">&#x2F;people</a>
+        
+        <a href=&#x2F;recommendations style="margin-left: 0.7em">&#x2F;recommendations</a>
+        
+
+        
+        | <a id="dark-mode-toggle" onclick="toggleTheme()" href="javascript:void(0)">
+            <img src="/feather/sun.svg" id="sun-icon" style="filter: invert(1);" />
+            <img src="/feather/moon.svg" id="moon-icon" />
+        </a>
+        <script src=https://harsh-doshii.github.io/js/themetoggle.js></script>
+        
+    </nav>
+</header>
+
+
+        
+        
+    
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        121. Querying code as if it is a DB - CodeQL, an intro<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2025-03-17</time>
+                    
+
+                    
+                </div>
+        </div>
+
+        
+
+        
+        
+            
+        
+
+        <section class="body">
+            <p>We have been querying Database since forever, but can we query through a codebase? Yes we can through CodeQL!</p>
+<p>Wait, how is searching through a codebase, through simple text search in IDE different from querying?</p>
+<p>Searching through a codebase using an IDE's search functionality and querying with CodeQL serve different purposes and have different capabilities.Most IDEs provide basic and advanced search capabilities, such as: Keyword search, Regex, Finding References to locate function or variable usages, etc. However, these searches are mostly syntactic—they work by finding literal text matches or simple patterns but do not analyze code semantics (i.e., meaning, relationships, or data flow).</p>
+<p>On the other hand, CodeQL is a powerful static analysis tool that allows you to query a codebase semantically rather than just searching for text patterns. It:</p>
+<ol>
+<li>Understands code structure: It builds an internal database (abstract syntax tree, control flow graph, etc.), so you can query program elements meaningfully.</li>
+<li>Finds security vulnerabilities: You can write queries to detect SQL injections, hardcoded secrets, and memory leaks, which are impossible with simple text searches.</li>
+<li>Analyzes relationships: Queries can track function calls, variable flows, inheritance, and data propagation.</li>
+<li>Cross-file &amp; cross-repository analysis: Unlike IDE searches, which are often limited to a single repository, CodeQL can analyze entire projects or organizations.</li>
+</ol>
+<p>CodeQL analysis consists of three steps:</p>
+<ol>
+<li>Preparing the code, by creating a CodeQL database. (Basically convert the code --&gt; representation of code in terms of AST, Graphs, etc.)</li>
+<li>Running CodeQL queries against the database.</li>
+<li>Interpreting the query results.</li>
+</ol>
+<p>Footnote:</p>
+<p>Difference between Syntax and Semantics:</p>
+<ul>
+<li>Syntax is about the language laws, rules. It is basically &quot;TAX&quot;. For eg, missing a <code>;</code> at the end of a C++ statement, is a syntactical error. &quot;I goed to play.&quot; is a syntax mistake because it violates the rules of grammar.</li>
+<li>Semantics is about the logic and meaning. Remember it as &quot;seMEANtics&quot;. For eg, dividing by 0 is a semantic error as it is illogical. &quot;The chair ate the apple&quot; is syntactically correct but semantically incorrect as it makes no sense.</li>
+</ul>
+
+        </section>
+
+        
+
+    </article>
+</main>
+
+
+    </div>
+</body>
+
+</html>
