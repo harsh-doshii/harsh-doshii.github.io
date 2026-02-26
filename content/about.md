@@ -5,7 +5,7 @@ path = "about"
 
 Hello! I am Harsh Doshi.
 
-I'm joining the University of Pennsylvania in Fall 2025 to pursue my Master’s in Computer Science. Before this, I worked as a Software Engineer at Salesforce for two years. I completed my undergraduate degree in Computer Science from BITS Pilani, Goa Campus.
+I’m currently pursuing my Master’s in Computer Science at the University of Pennsylvania, where I started in Fall 2025. Before UPenn, I worked as a Software Engineer at Salesforce for two years. I earned my undergraduate degree in Computer Science from BITS Pilani, Goa Campus.
 
 At Salesforce, I worked in the domain of software security - threat and vulnerability management. I scanned vulnerabilities and bugs for breakfast, deployed defenders for lunch, monitored health of systems and services for dinner and had a good night sleep knowing that Salesforce assets are secured to the highest level.
 
