@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+
+    
+    
+    
+    <title>
+         61. Learning Kubernetes Day 1
+        
+    </title>
+
+        
+            <meta property="og:title" content="61. Learning Kubernetes Day 1" />
+        
+     
+
+     
+         
+     
+
+     
+         
+    
+
+    
+    <link rel="icon" type="image/png" href=&#x2F;icons&#x2F;icon.png />
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    
+    
+        <link href=https://harsh-doshii.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="doshi&#x27;s scratchpad" href="https://harsh-doshii.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://harsh-doshii.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://harsh-doshii.github.io/theme/dark.css" />
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://harsh-doshii.github.io/main.css />
+
+    
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-170818569-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-170818569-1');
+    </script>
+
+    <script async src="https://us.umami.is/script.js" data-website-id="2b0e0e64-98d6-464b-8574-2cb94d848738"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body);"></script>
+</head>
+
+<body>
+    <div class="content">
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;harsh-doshii.github.io&#x2F;>doshi&#x27;s scratchpad</a>
+
+        <div class="socials">
+            
+            <a rel="me" href="https:&#x2F;&#x2F;discuss.systems&#x2F;@hdoshi" class="social">
+                <img alt=mastodon src="/social_icons/mastodon.svg">
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;harsh-doshi16&#x2F;" class="social">
+                <img alt=linkedin src="/social_icons/linkedin.svg">
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;harsh-doshii" class="social">
+                <img alt=github src="/social_icons/github.svg">
+            </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+        <a href=&#x2F;posts style="margin-left: 0.7em">&#x2F;posts</a>
+        
+        <a href=&#x2F;about style="margin-left: 0.7em">&#x2F;about</a>
+        
+        <a href=&#x2F;people style="margin-left: 0.7em">&#x2F;people</a>
+        
+        <a href=&#x2F;recommendations style="margin-left: 0.7em">&#x2F;recommendations</a>
+        
+
+        
+        | <a id="dark-mode-toggle" onclick="toggleTheme()" href="javascript:void(0)">
+            <img src="/feather/sun.svg" id="sun-icon" style="filter: invert(1);" />
+            <img src="/feather/moon.svg" id="moon-icon" />
+        </a>
+        <script src=https://harsh-doshii.github.io/js/themetoggle.js></script>
+        
+    </nav>
+</header>
+
+
+        
+        
+    
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        61. Learning Kubernetes Day 1<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2023-12-30</time>
+                    
+
+                    
+                </div>
+        </div>
+
+        
+
+        
+        
+            
+        
+
+        <section class="body">
+            <p>Server - A simple computer, where we run a software/applications.
+Application - A set of instructions/piece of code.</p>
+<p>Types of software:</p>
+<ul>
+<li>Stand alone application: Desktop application lie Paint/VLC/Calculator.</li>
+<li>Web application: Something that is accessed over a network.</li>
+</ul>
+<p>Can I use my laptop to host a service which can be accessed over the internet?
+Yes, ideally. We should be able to do this. To host a website, we use a webserver. Eg. of webservers: tomcat, nginx, apache
+Every application that is hosted in a server needs a port.</p>
+<p>browser accesses the webapp through the address: <a href="http://ipaddr:port">http://ipaddr:port</a>
+A domain like &lt;www.fb.com&gt; redirects to  <a href="http://ipaddr:port">http://ipaddr:port</a> through the DNS.</p>
+<p>Types of machines / servers: physical machines/virtual machines.
+physical machines have high maintainence and are difficult to scale. It can also lead to resource wastage.
+virtual machine pulls the hardware resources in an isolated environment. VMs are created using hypervisors. It solves a lot of problems invloved with physical infra.</p>
+<p>Environment: eg. dev/stage/PROD. Environment is a set of servers where we run our application. Why do we need a set of servers? So that there is High Availability (no single point of failure).</p>
+<p>What is a challenge with this deployment strategy? There is a possibility of misconfig in servers. Like working in Dev but not in PROD lol. Change in config is a problem.</p>
+<p>Now what is a container? Containerization means packaging a software with its dependencies to deploy it on a server.</p>
+<p>How to build and run container packages?</p>
+<ul>
+<li>We need a containerization tool / container runtime tool. eg. Docker/ContainerD/Crio. Docker was the first to introduce container technology. It was in 2013.</li>
+<li>Docker image is basically a container package. Container is the runtime instance of an application/Container Package. Image RUNS and becomes a container. Runtime instance is a running process. A process that consumes CPU, memory, etc. Hence: Docker container is just a process that is running on your server.</li>
+<li>single container === single instance of application.</li>
+<li>from a single image, we can start multiple containers.</li>
+</ul>
+<p>Docker runs as a daemon process.</p>
+<p>how to run a container from a given image?</p>
+<ul>
+<li>docker run or docker container run</li>
+<li>docker container can be run in two modes:</li>
+</ul>
+<ol>
+<li>interactive/foreground: this is the default mode. something like which prompts you to proivde an input or something. we can't run more than one instance. the terminal is blocked till the process is closed.</li>
+<li>detached/background: runs in background easily.</li>
+</ol>
+<p>Every container is a Process, so it has it's own unique PID.
+Every container has its own IP address.</p>
+<p>How can you access the container from the outside world?
+Let's say there are two nginx containers running on port 80 and two tomcat containers on port 8080. Every container get an ip address of its own, called ContainerIP. Container ip is a dynamic ip generated by the container runtime (docker). IP doesnt change if the container restarts.
+We can use cont-ip:cont-port to access the app only INSIDE VM. We can't use it from outside.
+Container Port is a value given by tool/software we use inside the container. E.g. A tomcat software has the default port of 8080. We can customize it though only while building the image.</p>
+<p>So the question still is How can you access the container from the outside world?</p>
+<ul>
+<li>
+<p>When we send a request a terminal, we are first sending it to VM and then to the container on the VM.</p>
+</li>
+<li>
+<p>That is called an entrypoint. We can map/port-foward . browser puts something like: vm-ip:vm-port. Let's say we have done a port mapping at 1234 for one of the nginx container. So let's we ping vm-ip:1234 then we are actually hitting the nginx conatiner.</p>
+</li>
+<li>
+<p>example command:  docker run -d -p 1234:80 nginx:latest is basically creating an nginx container that maps 1234 of the VM to 80 of the container.</p>
+</li>
+<li>
+<p>Every docker image if needed will also include os packages/libraries as a part of image build process. 99% of images that we find in docker hub have oslib for sure. </p>
+</li>
+</ul>
+<p>What is the diff between oslib inside a cont pkg vs full os inside vm?</p>
+<ul>
+<li>oslib is like an incomplete os. it is a very basic os. Like oslib doesnt contain kernel, gui, ssh, cron, mkdir etc.</li>
+<li>because there is no ssh, what we have is a docker exec command. docker exec -it containerID /bin/bash. bin/bash is a path actually. It means bash executable inside the bin folder. -it means interactive terminal.</li>
+</ul>
+
+        </section>
+
+        
+
+    </article>
+</main>
+
+
+    </div>
+</body>
+
+</html>
