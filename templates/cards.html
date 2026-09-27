@@ -14,7 +14,7 @@
             {%- set show_pages = section.pages -%}
         {% endif -%}
 
-        {{ post_macros::cards_posts(pages=show_pages) }}
+        {{ post_macros::cards_posts(pages=show_pages | reverse ) }}
     </main>
 
     {% if paginator %}
