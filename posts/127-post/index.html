@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+
+    
+    
+    
+    <title>
+         127. Opening Chrome: A High Level View of CS Concepts
+        
+    </title>
+
+        
+            <meta property="og:title" content="127. Opening Chrome: A High Level View of CS Concepts" />
+        
+     
+
+     
+         
+     
+
+     
+         
+    
+
+    
+    <link rel="icon" type="image/png" href=&#x2F;icons&#x2F;icon.png />
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    
+    
+        <link href=https://harsh-doshii.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="doshi&#x27;s scratchpad" href="https://harsh-doshii.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://harsh-doshii.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://harsh-doshii.github.io/theme/dark.css" />
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://harsh-doshii.github.io/main.css />
+
+    
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-170818569-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-170818569-1');
+    </script>
+
+    <script async src="https://us.umami.is/script.js" data-website-id="2b0e0e64-98d6-464b-8574-2cb94d848738"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body);"></script>
+</head>
+
+<body>
+    <div class="content">
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;harsh-doshii.github.io&#x2F;>doshi&#x27;s scratchpad</a>
+
+        <div class="socials">
+            
+            <a rel="me" href="https:&#x2F;&#x2F;discuss.systems&#x2F;@hdoshi" class="social">
+                <img alt=mastodon src="/social_icons/mastodon.svg">
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;harsh-doshi16&#x2F;" class="social">
+                <img alt=linkedin src="/social_icons/linkedin.svg">
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;harsh-doshii" class="social">
+                <img alt=github src="/social_icons/github.svg">
+            </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+        <a href=&#x2F;posts style="margin-left: 0.7em">&#x2F;posts</a>
+        
+        <a href=&#x2F;about style="margin-left: 0.7em">&#x2F;about</a>
+        
+        <a href=&#x2F;people style="margin-left: 0.7em">&#x2F;people</a>
+        
+        <a href=&#x2F;recommendations style="margin-left: 0.7em">&#x2F;recommendations</a>
+        
+
+        
+        | <a id="dark-mode-toggle" onclick="toggleTheme()" href="javascript:void(0)">
+            <img src="/feather/sun.svg" id="sun-icon" style="filter: invert(1);" />
+            <img src="/feather/moon.svg" id="moon-icon" />
+        </a>
+        <script src=https://harsh-doshii.github.io/js/themetoggle.js></script>
+        
+    </nav>
+</header>
+
+
+        
+        
+    
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        127. Opening Chrome: A High Level View of CS Concepts<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2025-07-19</time>
+                    
+
+                    
+                </div>
+        </div>
+
+        
+
+        
+        
+            
+        
+
+        <section class="body">
+            <p>If you’ve studied Computer Science, you've likely come across foundational topics like Operating Systems, Compilers, Networking, Automata, Data Structures &amp; Algorithms, Microprocessors, and Programming Languages.</p>
+<p>But have you ever wondered how these concepts actually come together in something as simple and everyday as opening Google Chrome on your laptop?</p>
+<p>In this blog post, we’ll walk through what happens when you open Chrome. It turns out that this single mouse click touches a lot of different aspects of Computer Science.  This is, of course, a 10,000 ft view, but by following this journey, we’ll see how these aspects connect (or sometimes don’t!), and gain a clearer picture of the big picture behind the CS curriculum.</p>
+<p>Task: Opening Google Chrome</p>
+<ol>
+<li>
+<p>You double click the Chrome Icon:</p>
+<ul>
+<li>
+<p>OS</p>
+<ul>
+<li>The OS GUI registers the mouse click.</li>
+<li>The OS looks up the <code>.desktop</code> or <code>.exe</code> shortcut, and resolves it to the actual binary file on disk (e.g., <code>/opt/google/chrome/chrome</code>)</li>
+</ul>
+</li>
+<li>
+<p>File Systems (bridge between the OS and Hardware Storage)</p>
+<ul>
+<li>Chrome’s binary and resources are loaded from disk (SSD/HDD) into main memory (RAM).</li>
+<li>Uses file system structures like inodes, FAT, NTFS, ext4, etc.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>The OS creates a process.</p>
+<ul>
+<li>Processes and Threads:
+<ul>
+<li>OS allocates a new process for Chrome.</li>
+<li>Loads the executable binary and starts the main thread.</li>
+<li>Chrome may soon create multiple threads/processes — for UI, renderer, network, etc.</li>
+</ul>
+</li>
+<li>Virtual Memory:
+<ul>
+<li>The OS gives the process its own virtual address space.</li>
+<li>Virtual memory gives each process a clean, isolated view of memory while letting the OS control, protect, and efficiently manage the real physical RAM.</li>
+<li>Chrome accesses memory through a virtual address which is then mapped to a physical address on the RAM.</li>
+</ul>
+</li>
+<li>System Calls:
+<ul>
+<li>Chrome makes syscalls like fork(), exec(), mmap(), open(), etc. to interact with the OS.</li>
+<li>For example, if you create a new tab, Chrome will make a fork() syscall to create a new process.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>CPU starts executing instructions.</p>
+<ul>
+<li>Computer Architecture / Microprocessors:
+<ul>
+<li>The CPU fetches, decodes, and executes the machine instructions, which come from the loaded Chrome binary.</li>
+<li>The compiled binary uses an ISA (e.g., x86, ARM), which the CPU understands.</li>
+<li>Data and instructions are loaded into L1/L2/L3 CPU caches for speed. The CPU cache helps speed up repeated access to data like HTML, JavaScript, DOM trees, images, etc.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Chrome starts up: Code executes.</p>
+<ul>
+<li>Compilers and Languages:
+<ul>
+<li>The Chrome binary was produced by a compiler (e.g., Clang) from C++ source (This happened at Google's office, not in your laptop, you just downloaded the compiled binary).</li>
+<li>It includes runtime libraries, startup routines (main()), and UI code.</li>
+</ul>
+</li>
+<li>Dynamic Linking:
+<ul>
+<li>Libraries like libc, graphics, or network are dynamically loaded. This is done to reduce the effective size, use shared code, etc.</li>
+</ul>
+</li>
+<li>Heap/Stack:
+<ul>
+<li>Chrome allocates memory dynamically for tabs, DOM trees, user input buffers, etc.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Threads are created.</p>
+<ul>
+<li>Concurrency / Multithreading:
+<ul>
+<li>Chrome creates: Main thread for UI, renderer processes (one per tab, for security) and network thread for sending/receiving HTTP data.</li>
+</ul>
+</li>
+<li>OS Scheduling:
+<ul>
+<li>The OS uses a scheduler to give CPU time slices to these threads and processes.</li>
+</ul>
+</li>
+<li>Context Switching:
+<ul>
+<li>When switching between tabs/processes or running in the background, context switches happen.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>A tab is opened.</p>
+<ul>
+<li>Networking:
+<ul>
+<li>When you type https://www.google.com, Chrome: Resolves DNS --&gt; Opens a TCP connection to Google servers --&gt; Performs a TLS handshake (for HTTPS) --&gt; Sends/receives HTTP requests/responses.</li>
+</ul>
+</li>
+<li>Sockets / Protocol Stack:
+<ul>
+<li>Interacts with the OS’s TCP/IP stack via socket system calls.</li>
+<li>Underneath, data travels through: Application layer (HTTP) --&gt; Transport (TCP) --&gt;  Network (IP) --&gt; Link (Ethernet/Wi-Fi)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Rendering and JS execution begins.</p>
+<ul>
+<li>DOM and Rendering:
+<ul>
+<li>HTML and CSS are parsed into DOM and CSSOM trees.</li>
+<li>JavaScript is parsed and executed.</li>
+</ul>
+</li>
+<li>Compiler and Interpreter:
+<ul>
+<li>JS is interpreted or JIT-compiled (e.g., by V8 engine).</li>
+<li>V8 uses compiler concepts: tokenization, parsing, bytecode, optimization.</li>
+</ul>
+</li>
+<li>Automata Theory:
+<ul>
+<li>Lexing and parsing JS/HTML rely on finite automata, CFGs, and parsers — classic compiler theory.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Display output happens.</p>
+<ul>
+<li>Graphics Subsystem:
+<ul>
+<li>GPU is involved for compositing and rendering.</li>
+<li>Chrome uses Skia or OpenGL/Vulkan under the hood.</li>
+</ul>
+</li>
+<li>Syscalls to OS:
+<ul>
+<li>Chrome uses GUI libraries to draw to the screen (X11, Wayland, Windows GDI, etc.).</li>
+<li>Keyboard and mouse inputs are captured by the OS and passed to Chrome.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+
+        </section>
+
+        
+
+    </article>
+</main>
+
+
+    </div>
+</body>
+
+</html>
