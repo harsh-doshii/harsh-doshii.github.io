@@ -247,10 +247,75 @@
       svg.append(t);
       svg.append(svgEl('path', { d: `M${labelW},${y0 + 6}h${w - 4}a4,4 0 0 1 4,4v6a4,4 0 0 1 -4,4h-${w - 4}z`, class: 'bp-bar' }));
       const v = svgEl('text', { x: labelW + w + 8, y: y0 + 18, class: 'bp-bar-value' });
-      v.textContent = String(d.value);
+      v.textContent = d.text || String(d.value);
       svg.append(v);
     });
     host.append(svg);
+  }
+
+  /* ---------- muscle map: front and back figures, shaded by weighted sets ---------- */
+  const MUSCLE_LABELS = {
+    chest: 'Chest', shoulders: 'Shoulders', biceps: 'Biceps', triceps: 'Triceps', forearms: 'Forearms',
+    lats: 'Lats', upper_back: 'Upper back', traps: 'Traps', lower_back: 'Lower back', abdominals: 'Abs',
+    quadriceps: 'Quads', hamstrings: 'Hamstrings', glutes: 'Glutes', calves: 'Calves',
+    abductors: 'Abductors', adductors: 'Adductors', neck: 'Neck',
+  };
+  // Figure shape -> the Hevy muscles it represents. head and knees are never trained.
+  const SHAPE_MUSCLES = {
+    chest: ['chest'], obliques: ['abdominals'], abs: ['abdominals'], biceps: ['biceps'], triceps: ['triceps'],
+    neck: ['neck'], front_deltoids: ['shoulders'], back_deltoids: ['shoulders'], abductors: ['adductors'],
+    abductor: ['abductors'], quadriceps: ['quadriceps'], calves: ['calves'], left_soleus: ['calves'],
+    right_soleus: ['calves'], forearm: ['forearms'], trapezius: ['traps'], upper_back: ['lats', 'upper_back'],
+    lower_back: ['lower_back'], gluteal: ['glutes'], hamstring: ['hamstrings'], head: [], knees: [],
+  };
+  const fmtSets = (n) => (Number.isInteger(n) ? String(n) : n.toFixed(1));
+
+  function muscleMap(host, totals) {
+    const shapes = window.BODY_MUSCLE_SHAPES;
+    if (!shapes) return;
+    // A shape covering two muscles (lats + upper back) takes the larger value: the same sets
+    // usually count toward both, so adding them would double-count.
+    const shapeValue = (name) => Math.max(0, ...(SHAPE_MUSCLES[name] || []).map((m) => totals[m] || 0));
+    const max = Math.max(1, ...Object.keys(SHAPE_MUSCLES).map(shapeValue));
+    const bin = (v) => (v > 0 ? Math.min(5, Math.max(1, Math.ceil((v / max) * 5))) : 0);
+    const tip = el('div', { class: 'bp-tip', role: 'status' });
+    const figures = el('div', { class: 'bp-figures' });
+
+    [['front', 'Front'], ['back', 'Back']].forEach(([side, label]) => {
+      // width/height give the figure its proportions; CSS then scales it to the column.
+      const svg = svgEl('svg', { viewBox: '0 0 100 220', width: 100, height: 220, class: 'bp-figure', role: 'img' });
+      svg.setAttribute('aria-label', `${label} of body, muscles shaded by working sets. The list beside it has the numbers.`);
+      shapes[side].forEach(([name, polys]) => {
+        const muscles = SHAPE_MUSCLES[name] || [];
+        const v = shapeValue(name);
+        const g = svgEl('g', { class: muscles.length ? `bp-muscle bp-heat-${bin(v)}` : 'bp-muscle bp-body' });
+        polys.forEach((pts) => g.append(svgEl('polygon', { points: pts.trim() })));
+        if (muscles.length) {
+          g.addEventListener('pointerenter', () => {
+            tip.replaceChildren(
+              el('div', { class: 'bp-tip-date', text: muscles.map((m) => MUSCLE_LABELS[m]).join(' & ') }),
+              ...muscles.map((m) => el('div', { class: 'bp-tip-row' }, el('span', { text: muscles.length > 1 ? MUSCLE_LABELS[m] : 'Working sets' }), el('strong', { text: totals[m] ? fmtSets(totals[m]) : 'none' }))),
+            );
+            tip.classList.add('on');
+            g.classList.add('on');
+          });
+          g.addEventListener('pointerleave', () => {
+            tip.classList.remove('on');
+            g.classList.remove('on');
+          });
+        }
+        svg.append(g);
+      });
+      figures.append(el('figure', {}, svg, el('figcaption', { text: label })));
+    });
+
+    const legend = el('div', { class: 'bp-heat-legend' }, el('i', { class: 'bp-body' }), el('span', { text: 'Not trained' }),
+      el('span', { class: 'bp-gap' }), el('span', { text: 'Fewer' }), ...[1, 2, 3, 4, 5].map((b) => el('i', { class: `bp-heat-${b}` })), el('span', { text: 'More sets' }));
+    const left = el('div', { class: 'bp-map' }, figures, legend, tip);
+    const listHost = el('div', { class: 'bp-map-list' });
+    host.append(el('div', { class: 'bp-map-wrap' }, left, listHost));
+    const items = Object.entries(totals).filter(([m, n]) => n > 0 && MUSCLE_LABELS[m]).sort((a, b) => b[1] - a[1]).map(([m, n]) => ({ label: MUSCLE_LABELS[m], value: n }));
+    bars(listHost, items.map((d) => ({ ...d, text: fmtSets(d.value) })));
   }
 
   /* ---------- sections ---------- */
@@ -407,11 +472,11 @@
     const calStart = firstWeek > rangeStart() ? firstWeek : rangeStart();
     if (calStart > rangeStart()) heatHost.append(el('p', { class: 'bp-sub', text: `Starting the week of my first logged workout, ${fmtDate(first)}.` }));
 
-    const groups = {};
-    days.forEach((d) => Object.entries(d.groups).forEach(([g, n]) => (groups[g] = (groups[g] || 0) + n)));
-    const items = GROUP_ORDER.filter((g) => groups[g]).map((g) => ({ label: g, value: groups[g] })).sort((a, b) => b.value - a.value);
-    const barHost = el('div', { class: 'bp-card' });
-    if (items.length) root.append(...h2('Where the sets go', 'Working sets by muscle group in this range, across every exercise.'), barHost);
+    const totals = {};
+    days.forEach((d) => Object.entries(d.muscles || {}).forEach(([m, n]) => (totals[m] = (totals[m] || 0) + n)));
+    const mapHost = el('div', { class: 'bp-card' });
+    const hasMuscles = Object.values(totals).some((n) => n > 0);
+    if (hasMuscles) root.append(...h2('Where the sets go', 'Working sets per muscle in this range, across every exercise. A set counts fully for the main muscle and half for each helper muscle.'), mapHost);
 
     if (exs.length) root.append(...h2('All lifts', `Every exercise I did in this range, grouped by muscle. Change and trend appear once an exercise has ${MIN_TREND} or more sessions.`), allLifts(exs, f.chosen));
 
@@ -421,7 +486,7 @@
     // Everything is in the page now, so charts can measure their real width.
     f.pending.forEach((draw) => draw());
     heatmap(heatHost, calStart, byDay);
-    if (items.length) bars(barHost, items);
+    if (hasMuscles) muscleMap(mapHost, totals);
   }
 
   fetch(page.dataset.liftingUrl, { cache: 'no-store', credentials: 'omit' })

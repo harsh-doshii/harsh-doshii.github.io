@@ -41,6 +41,10 @@ GROUPS = {
 }
 GROUP_ORDER = ["Chest", "Back", "Legs", "Shoulders", "Arms", "Core", "Other"]
 
+# For the muscle map: a working set counts fully toward its primary muscle and half toward
+# each secondary muscle, the usual way to estimate per-muscle training volume.
+SECONDARY_WEIGHT = 0.5
+
 # Epley is only trustworthy for low-rep sets; above this, a set counts as "best set" only.
 E1RM_MAX_REPS = 12
 
@@ -155,7 +159,8 @@ def session_value(measure, sets):
 
 def build(workouts, templates):
     by_id = {t["id"]: t for t in templates}
-    days = defaultdict(lambda: {"sessions": 0, "minutes": 0, "working_sets": 0, "volume_lb": 0.0, "groups": defaultdict(int)})
+    days = defaultdict(lambda: {"sessions": 0, "minutes": 0, "working_sets": 0, "volume_lb": 0.0,
+                                "groups": defaultdict(int), "muscles": defaultdict(float)})
     series = defaultdict(dict)  # template id -> date -> best value that day
 
     for wk in sorted(workouts, key=lambda w: w["start_time"]):
@@ -176,6 +181,12 @@ def build(workouts, templates):
             group = GROUPS.get(tpl.get("primary_muscle_group"), "Other")
             day["working_sets"] += len(working)
             day["groups"][group] += len(working)
+            primary = tpl.get("primary_muscle_group")
+            if primary in GROUPS:
+                day["muscles"][primary] += len(working)
+            for muscle in tpl.get("secondary_muscle_groups") or []:
+                if muscle in GROUPS and muscle != primary:
+                    day["muscles"][muscle] += len(working) * SECONDARY_WEIGHT
             if tpl.get("type") == "weight_reps":
                 day["volume_lb"] += sum((s.get("weight_kg") or 0) * KG_TO_LB * (s.get("reps") or 0) for s in working)
             best = session_value(measure_for(tpl), working)
@@ -192,6 +203,7 @@ def build(workouts, templates):
             "working_sets": v["working_sets"],
             "volume_lb": round(v["volume_lb"]),
             "groups": {g: v["groups"][g] for g in GROUP_ORDER if v["groups"].get(g)},
+            "muscles": {m: round(n, 1) for m, n in sorted(v["muscles"].items())},
         }
         for d, v in sorted(days.items())
     ]
@@ -225,6 +237,7 @@ def build(workouts, templates):
             "best_set": "Isolation lifts show the heaviest working set instead of an estimated 1RM.",
             "compound": "Hevy has no compound flag; exercises with 2+ secondary muscle groups are treated as compound.",
             "volume": "Volume is weight x reps across working sets of weighted exercises; bodyweight work is not counted.",
+            "muscles": f"Muscle map: each working set counts 1 toward its primary muscle and {SECONDARY_WEIGHT} toward each secondary muscle.",
             "dates": f"Dates are local to {TZ}.",
             "excluded": "Warm-up, cool-down and stretching entries are not counted as training.",
             "privacy": "Workout titles, descriptions and notes are not published.",

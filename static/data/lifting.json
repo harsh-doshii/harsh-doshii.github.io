@@ -14,6 +14,7 @@
   "best_set": "Isolation lifts show the heaviest working set instead of an estimated 1RM.",
   "compound": "Hevy has no compound flag; exercises with 2+ secondary muscle groups are treated as compound.",
   "volume": "Volume is weight x reps across working sets of weighted exercises; bodyweight work is not counted.",
+  "muscles": "Muscle map: each working set counts 1 toward its primary muscle and 0.5 toward each secondary muscle.",
   "dates": "Dates are local to America/Los_Angeles.",
   "excluded": "Warm-up, cool-down and stretching entries are not counted as training.",
   "privacy": "Workout titles, descriptions and notes are not published."
@@ -27,6 +28,12 @@
    "volume_lb": 5400,
    "groups": {
     "Legs": 9
+   },
+   "muscles": {
+    "calves": 1.5,
+    "glutes": 1.5,
+    "hamstrings": 4.5,
+    "quadriceps": 6.0
    }
   },
   {
@@ -39,6 +46,15 @@
     "Back": 9,
     "Shoulders": 3,
     "Arms": 6
+   },
+   "muscles": {
+    "biceps": 10.5,
+    "forearms": 4.5,
+    "lats": 4.5,
+    "neck": 1.5,
+    "shoulders": 3.0,
+    "traps": 3.0,
+    "upper_back": 4.5
    }
   },
   {
@@ -51,6 +67,11 @@
     "Chest": 9,
     "Shoulders": 6,
     "Arms": 3
+   },
+   "muscles": {
+    "chest": 9.0,
+    "shoulders": 9.0,
+    "triceps": 7.5
    }
   },
   {
@@ -63,6 +84,15 @@
     "Back": 9,
     "Shoulders": 3,
     "Arms": 6
+   },
+   "muscles": {
+    "biceps": 10.5,
+    "forearms": 4.5,
+    "lats": 4.5,
+    "neck": 1.5,
+    "shoulders": 3.0,
+    "traps": 3.0,
+    "upper_back": 4.5
    }
   }
  ],
@@ -353,5 +383,5 @@
    ]
   }
  ],
- "generated_at": "2026-11-02T02:13:14+00:00"
+ "generated_at": "2026-11-02T02:52:19+00:00"
 }
