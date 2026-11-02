@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Pull daily resting heart rate, HRV and steps from the Google Health API and write
+"""Pull daily resting heart rate, HRV, steps and VO2 max readings from the Google Health API and write
 static/data/health.json for the /body page.
 
 The values come from whatever Google Health holds. For me that's my Apple Watch: the
@@ -131,6 +131,38 @@ def daily_metric(token, start, end, path, filter_name, field, read, single_sourc
     return values, dict(counts)
 
 
+def vo2_max_readings(token, start, end):
+    """Individual VO2 max estimates (ml/kg/min). One device only, like HRV: Apple and
+    Fitbit estimate it differently. Google's daily-vo2-max series is left out because it
+    fills days between real readings."""
+    flt = (f'vo2_max.sample_time.physical_time >= "{start}T00:00:00Z" AND '
+           f'vo2_max.sample_time.physical_time < "{end}T00:00:00Z"')
+    points, page = [], None
+    while True:
+        params = {"filter": flt, "pageSize": 1000, **({"pageToken": page} if page else {})}
+        data = call(token, f"{API}/vo2-max/dataPoints?{urllib.parse.urlencode(params)}")
+        points.extend(data.get("dataPoints", []))
+        page = data.get("nextPageToken")
+        if not page:
+            break
+    counts = Counter(source_label(p) for p in points)
+    if not counts:
+        return [], {}
+    main = counts.most_common(1)[0][0]
+    by_day = {}
+    for p in points:
+        if source_label(p) != main:
+            continue
+        v = p.get("vo2Max") or {}
+        try:
+            day = ymd(v["sampleTime"]["civilTime"]["date"])  # local date of the reading
+            value = round(float(v["vo2Max"]), 1)
+        except (KeyError, ValueError, TypeError):
+            continue
+        by_day[day] = max(value, by_day.get(day, 0))  # one reading per day: the best that day
+    return [{"date": d, "value": by_day[d]} for d in sorted(by_day)], {main: counts[main]}
+
+
 def civil(d):
     return {"date": {"year": d.year, "month": d.month, "day": d.day}, "time": {"hours": 0, "minutes": 0, "seconds": 0}}
 
@@ -159,6 +191,7 @@ def build(token):
         metrics[key], sources[key] = daily_metric(token, start, today + timedelta(days=1), path, filter_name, field, read, single)
     metrics["steps"] = daily_steps(token, start, today)
     sources["steps"] = "All sources, merged by Google"
+    vo2, sources["vo2_max"] = vo2_max_readings(token, start, today + timedelta(days=1))
 
     days = sorted(set().union(*[set(v) for v in metrics.values()]))
     daily = [{"date": d, **{k: metrics[k][d] for k in ("rhr", "hrv", "steps") if d in metrics[k]}} for d in days]
@@ -174,8 +207,10 @@ def build(token):
             "steps": "Steps are Google's daily total across all sources; today is left out until the day is over.",
             "duplicates": "If two devices report the same day, the device that reported the most days is used.",
             "missing": "Days with no reading are left empty, never filled in.",
+            "vo2_max": "VO2 max (ml/kg/min) is the watch's own estimate, made during outdoor walks, runs and hikes; only real readings are shown, one per day.",
         },
         "daily": daily,
+        "vo2_max": vo2,
     }
 
 

@@ -64,6 +64,7 @@
   .bp-tile-value { font-size: 34px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; margin-top: 4px; }
   .bp-tile-value small { font-size: 15px; font-weight: 400; color: var(--bp-muted); margin-left: 4px; letter-spacing: 0; }
   .bp-tile svg { margin-top: 10px; max-width: 100%; }
+  .bp-cardio { max-width: 320px; }
   .bp-legend { display: flex; gap: 18px; font-size: 13px; color: var(--bp-ink-2); margin: 6px 0 18px; }
   .bp-key { display: inline-block; width: 16px; height: 0; border-top: 2px solid; vertical-align: middle; margin-right: 6px; }
   .bp-key.main { border-color: var(--bp-line-main); }

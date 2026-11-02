@@ -48,6 +48,7 @@
     time: { label: 'Longest', value: (v) => mmss(v), tick: (v) => mmss(v), unit: '' },
     distance: { label: 'Longest distance', value: (v) => `${(v / 1609.34).toFixed(2)} mi`, tick: (v) => (v / 1609.34).toFixed(1), unit: 'mi' },
     carry: { label: 'Heaviest carry', value: (v) => `${Math.round(v)} lb`, tick: (v) => Math.round(v), unit: 'lb' },
+    vo2: { label: 'VO2 max', value: (v) => `${v.toFixed(1)} ml/kg/min`, tick: (v) => Math.round(v), unit: '' },
   };
   const measureOf = (ex) => MEASURES[ex.measure] || MEASURES.best_set;
   const changeText = (ex, delta) => {
@@ -104,7 +105,11 @@
   }
 
   /* ---------- line chart with PR dots and a crosshair tooltip ---------- */
-  function lineChart(host, ex, points) {
+  // records: mark each new high in the accent (lifts). Off for readings like VO2 max,
+  // where only the latest point is highlighted.
+  // breakAfterDays: leave a gap instead of drawing across long stretches without readings.
+  // domain: [start, end] Dates for the time axis; defaults to the first and last point.
+  function lineChart(host, ex, points, { records = true, breakAfterDays = 0, domain = null } = {}) {
     const M = measureOf(ex);
     const W = host.clientWidth || 440, H = 150, P = { t: 10, r: 8, b: 22, l: 40 };
     const vals = points.map((p) => p.value);
@@ -113,7 +118,8 @@
     const ticks = niceTicks(lo - pad, hi + pad, 3);
     lo = ticks[0];
     hi = ticks[ticks.length - 1];
-    const t0 = parseDay(points[0].date).getTime(), t1 = parseDay(points[points.length - 1].date).getTime();
+    const t0 = (domain ? domain[0] : parseDay(points[0].date)).getTime();
+    const t1 = (domain ? domain[1] : parseDay(points[points.length - 1].date)).getTime();
     const x = (p) => P.l + ((parseDay(p.date).getTime() - t0) / (t1 - t0 || 1)) * (W - P.l - P.r);
     const y = (v) => P.t + (1 - (v - lo) / (hi - lo || 1)) * (H - P.t - P.b);
 
@@ -125,20 +131,22 @@
       tx.textContent = M.tick(t);
       svg.append(tx);
     });
-    [[points[0], 'start'], [points[points.length - 1], 'end']].forEach(([p, anchor]) => {
+    const edge = domain ? [{ date: dayKey(domain[0]) }, { date: dayKey(domain[1]) }] : [points[0], points[points.length - 1]];
+    [[edge[0], 'start'], [edge[1], 'end']].forEach(([p, anchor]) => {
       const tx = svgEl('text', { x: x(p), y: H - 4, 'text-anchor': anchor, class: 'bp-tick' });
       tx.textContent = fmtDate(parseDay(p.date));
       svg.append(tx);
     });
-    svg.append(svgEl('path', { d: points.map((p, i) => `${i ? 'L' : 'M'}${x(p).toFixed(1)},${y(p.value).toFixed(1)}`).join(''), class: 'bp-line-main' }));
+    const gapMs = breakAfterDays * 864e5;
+    svg.append(svgEl('path', { d: points.map((p, i) => {
+      const jump = i === 0 || (gapMs && parseDay(p.date) - parseDay(points[i - 1].date) > gapMs);
+      return `${jump ? 'M' : 'L'}${x(p).toFixed(1)},${y(p.value).toFixed(1)}`;
+    }).join(''), class: 'bp-line-main' }));
     let best = -Infinity;
-    points.forEach((p) => {
-      if (p.value > best) {
-        best = p.value;
-        svg.append(svgEl('circle', { cx: x(p), cy: y(p.value), r: 4.5, class: 'bp-dot-accent' }));
-      } else {
-        svg.append(svgEl('circle', { cx: x(p), cy: y(p.value), r: 3, class: 'bp-dot-main' }));
-      }
+    points.forEach((p, i) => {
+      const accent = records ? p.value > best : i === points.length - 1;
+      if (p.value > best) best = p.value;
+      svg.append(svgEl('circle', { cx: x(p), cy: y(p.value), r: accent ? 4.5 : 3, class: accent ? 'bp-dot-accent' : 'bp-dot-main' }));
     });
 
     const cross = svgEl('line', { y1: P.t, y2: H - P.b, class: 'bp-cross', opacity: 0 });
@@ -152,7 +160,7 @@
       cross.setAttribute('x1', cx);
       cross.setAttribute('x2', cx);
       cross.setAttribute('opacity', 1);
-      const pr = points.slice(0, idx).every((q) => q.value < p.value);
+      const pr = records && points.slice(0, idx).every((q) => q.value < p.value);
       tip.replaceChildren(
         el('div', { class: 'bp-tip-date', text: fmtDateLong(parseDay(p.date)) }),
         el('div', { class: 'bp-tip-row' }, el('span', { text: pr ? `${M.label} · record` : M.label }), el('strong', { text: M.value(p.value, p) })),
@@ -453,6 +461,31 @@
     return { parts, pending };
   }
 
+  // Cardio fitness: Apple Watch VO2 max readings (real readings only, no filled-in days).
+  function cardioFitness() {
+    const all = (health && health.vo2_max) || [];
+    if (!all.length) return { parts: [], pending: [] };
+    const from = dayKey(rangeStart());
+    const pts = all.filter((p) => p.date >= from);
+    const M = MEASURES.vo2;
+    const parts = [...h2('Cardio fitness', 'VO2 max, estimated by my Apple Watch during outdoor walks, runs and hikes of 20 minutes or more.')];
+    const latest = all[all.length - 1];
+    const tile = el('div', { class: 'bp-tile' },
+      el('div', { class: 'bp-tile-label', text: 'VO2 max · Apple Watch' }),
+      el('div', { class: 'bp-tile-value' }, document.createTextNode(latest.value.toFixed(1)), el('small', { text: 'ml/kg/min' })),
+      el('div', { class: 'bp-change bp-muted', text: `Latest reading, ${fmtDate(parseDay(latest.date))}` }));
+    if (pts.length >= 2) {
+      const delta = pts[pts.length - 1].value - pts[0].value, r = Math.round(delta * 10) / 10;
+      tile.append(el('div', { class: 'bp-change' },
+        el('span', { class: Math.abs(r) < 0.5 ? 'bp-muted' : r > 0 ? 'bp-good' : 'bp-bad', text: Math.abs(r) < 0.5 ? 'about the same' : `${r > 0 ? '↑' : '↓'} ${Math.abs(r).toFixed(1)} · ${r > 0 ? 'better' : 'worse'}` }),
+        document.createTextNode(` since ${fmtDate(parseDay(pts[0].date))} (${pts[0].value.toFixed(1)})`)));
+    }
+    tile.append(el('div', { class: 'bp-change bp-muted', text: `${pts.length} reading${pts.length === 1 ? '' : 's'} in this range` }));
+    // Readings are too sparse for a useful chart: the number and its context say enough.
+    parts.push(el('div', { class: 'bp-cardio' }, tile));
+    return { parts, pending: [] };
+  }
+
   function vitalsTable() {
     const from = rangeStart(), span = Math.round((today - from) / 864e5) + 1;
     const rows = healthDays(from, today);
@@ -609,6 +642,8 @@
     root.append(statusLine(), filterRow());
     const rec = health ? recovery() : { parts: [], pending: [] };
     root.append(...rec.parts);
+    const cardio = health ? cardioFitness() : { parts: [], pending: [] };
+    root.append(...cardio.parts);
 
     const f = featured(exs);
     root.append(...h2('Strength', f.auto ? 'My most-trained lifts in this range. Red dots are personal records.' : 'The lifts I care about most. Red dots are personal records.'));
@@ -653,6 +688,7 @@
 
     // Everything is in the page now, so charts can measure their real width.
     rec.pending.forEach((draw) => draw());
+    cardio.pending.forEach((draw) => draw());
     f.pending.forEach((draw) => draw());
     heatmap(heatHost, calStart, byDay);
     if (hasMuscles) muscleMap(mapHost, totals);

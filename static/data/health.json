@@ -9,20 +9,24 @@
  },
  "sources": {
   "rhr": {
-   "Apple Watch": 207,
+   "Apple Watch": 208,
    "Fitbit Air": 30
   },
   "hrv": {
    "Apple Watch": 228
   },
-  "steps": "All sources, merged by Google"
+  "steps": "All sources, merged by Google",
+  "vo2_max": {
+   "Apple Watch": 30
+  }
  },
  "methodology": {
   "rhr": "Resting heart rate is the device's own daily value, in beats per minute.",
   "hrv": "HRV is the daily average in milliseconds from one device only. Apple Watch measures SDNN, which isn't comparable with Fitbit's RMSSD, so the two are never mixed.",
   "steps": "Steps are Google's daily total across all sources; today is left out until the day is over.",
   "duplicates": "If two devices report the same day, the device that reported the most days is used.",
-  "missing": "Days with no reading are left empty, never filled in."
+  "missing": "Days with no reading are left empty, never filled in.",
+  "vo2_max": "VO2 max (ml/kg/min) is the watch's own estimate, made during outdoor walks, runs and hikes; only real readings are shown, one per day."
  },
  "daily": [
   {
@@ -1433,8 +1437,131 @@
   },
   {
    "date": "2026-11-02",
-   "hrv": 70.0
+   "rhr": 61,
+   "hrv": 96.4
   }
  ],
- "generated_at": "2026-11-02T19:48:59+00:00"
+ "vo2_max": [
+  {
+   "date": "2026-03-06",
+   "value": 41.4
+  },
+  {
+   "date": "2026-03-13",
+   "value": 42.9
+  },
+  {
+   "date": "2026-03-14",
+   "value": 41.2
+  },
+  {
+   "date": "2026-03-17",
+   "value": 42.3
+  },
+  {
+   "date": "2026-03-20",
+   "value": 42.5
+  },
+  {
+   "date": "2026-03-21",
+   "value": 43.1
+  },
+  {
+   "date": "2026-03-30",
+   "value": 43.1
+  },
+  {
+   "date": "2026-04-07",
+   "value": 43.1
+  },
+  {
+   "date": "2026-04-08",
+   "value": 42.8
+  },
+  {
+   "date": "2026-04-09",
+   "value": 42.9
+  },
+  {
+   "date": "2026-04-10",
+   "value": 42.9
+  },
+  {
+   "date": "2026-04-11",
+   "value": 43.7
+  },
+  {
+   "date": "2026-04-12",
+   "value": 43.6
+  },
+  {
+   "date": "2026-04-14",
+   "value": 43.3
+  },
+  {
+   "date": "2026-04-18",
+   "value": 42.9
+  },
+  {
+   "date": "2026-04-20",
+   "value": 42.5
+  },
+  {
+   "date": "2026-04-28",
+   "value": 43.0
+  },
+  {
+   "date": "2026-05-05",
+   "value": 42.8
+  },
+  {
+   "date": "2026-05-07",
+   "value": 43.0
+  },
+  {
+   "date": "2026-05-14",
+   "value": 43.4
+  },
+  {
+   "date": "2026-05-25",
+   "value": 42.6
+  },
+  {
+   "date": "2026-06-07",
+   "value": 42.4
+  },
+  {
+   "date": "2026-06-17",
+   "value": 42.5
+  },
+  {
+   "date": "2026-06-18",
+   "value": 43.0
+  },
+  {
+   "date": "2026-06-20",
+   "value": 44.0
+  },
+  {
+   "date": "2026-08-02",
+   "value": 44.0
+  },
+  {
+   "date": "2026-08-24",
+   "value": 44.0
+  },
+  {
+   "date": "2026-10-01",
+   "value": 51.7
+  },
+  {
+   "date": "2026-10-09",
+   "value": 53.4
+  },
+  {
+   "date": "2026-10-10",
+   "value": 50.5
+  }
+ ],
+ "generated_at": "2026-11-02T20:48:11+00:00"
 }
