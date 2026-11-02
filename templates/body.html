@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+    {{ post_macros::page_header(title=page.title) }}
+
+    <main class="body-page" id="body-page"
+          data-lifting-url="{{ get_url(path='data/lifting.json') }}"
+          data-pinned="{{ config.extra.body.pinned | default(value=[]) | json_encode() }}">
+        <div class="body-intro">{{ page.content | safe }}</div>
+        <noscript><p>The charts on this page need JavaScript.</p></noscript>
+    </main>
+
+    <script src="{{ get_url(path='js/body.js') }}" defer></script>
+{% endblock main_content %}

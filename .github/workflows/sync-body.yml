@@ -1,0 +1,48 @@
+# Pulls training data from Hevy every morning and commits static/data/lifting.json
+# when it changed. That push then runs "Build and deploy GH Pages" (main.yml).
+#
+# Secrets needed (Settings -> Secrets and variables -> Actions):
+#   HEVY_API_KEY  the Hevy Pro API key (read-only use; the script only makes GET requests)
+#   TOKEN         the existing personal access token main.yml already uses. A push made
+#                 with the default GITHUB_TOKEN would NOT start main.yml, so the site
+#                 would never redeploy.
+name: Sync body data
+
+on:
+  schedule:
+    - cron: "17 13 * * *" # 06:17 PDT / 05:17 PST; off the hour, when Actions is less busy
+  workflow_dispatch: # "Run workflow" button for a manual sync
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-body
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+        with:
+          ref: master
+          token: ${{ secrets.TOKEN }}
+
+      - name: pull from Hevy
+        env:
+          HEVY_API_KEY: ${{ secrets.HEVY_API_KEY }}
+        run: python3 scripts/sync_hevy.py
+
+      - name: commit if changed
+        run: |
+          git add static/data/lifting.json
+          if git diff --cached --quiet; then
+            echo "No new training data."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "body: sync training data"
+          git push origin master

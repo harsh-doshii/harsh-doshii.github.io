@@ -1,0 +1,357 @@
+{
+ "schema_version": 1,
+ "source": "Hevy",
+ "units": "lb",
+ "timezone": "America/Los_Angeles",
+ "coverage": {
+  "first_date": "2026-10-20",
+  "last_date": "2026-10-30",
+  "workouts": 4
+ },
+ "methodology": {
+  "working_sets": "Warm-up sets are excluded everywhere.",
+  "e1rm": "Estimated 1RM uses the Epley formula (weight x (1 + reps/30)) on the best working set with 1-12 reps.",
+  "best_set": "Isolation lifts show the heaviest working set instead of an estimated 1RM.",
+  "compound": "Hevy has no compound flag; exercises with 2+ secondary muscle groups are treated as compound.",
+  "volume": "Volume is weight x reps across working sets of weighted exercises; bodyweight work is not counted.",
+  "dates": "Dates are local to America/Los_Angeles.",
+  "excluded": "Warm-up, cool-down and stretching entries are not counted as training.",
+  "privacy": "Workout titles, descriptions and notes are not published."
+ },
+ "daily": [
+  {
+   "date": "2026-10-20",
+   "sessions": 1,
+   "minutes": 29,
+   "working_sets": 9,
+   "volume_lb": 5400,
+   "groups": {
+    "Legs": 9
+   }
+  },
+  {
+   "date": "2026-10-21",
+   "sessions": 1,
+   "minutes": 44,
+   "working_sets": 18,
+   "volume_lb": 7141,
+   "groups": {
+    "Back": 9,
+    "Shoulders": 3,
+    "Arms": 6
+   }
+  },
+  {
+   "date": "2026-10-29",
+   "sessions": 1,
+   "minutes": 56,
+   "working_sets": 18,
+   "volume_lb": 8802,
+   "groups": {
+    "Chest": 9,
+    "Shoulders": 6,
+    "Arms": 3
+   }
+  },
+  {
+   "date": "2026-10-30",
+   "sessions": 1,
+   "minutes": 47,
+   "working_sets": 18,
+   "volume_lb": 10923,
+   "groups": {
+    "Back": 9,
+    "Shoulders": 3,
+    "Arms": 6
+   }
+  }
+ ],
+ "exercises": [
+  {
+   "id": "79D0BB3A",
+   "title": "Bench Press (Barbell)",
+   "equipment": "barbell",
+   "group": "Chest",
+   "type": "weight_reps",
+   "measure": "e1rm",
+   "sessions": [
+    {
+     "date": "2026-10-29",
+     "value": 100.0,
+     "weight": 75.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "id": "50DFDFAB",
+   "title": "Incline Bench Press (Barbell)",
+   "equipment": "barbell",
+   "group": "Chest",
+   "type": "weight_reps",
+   "measure": "e1rm",
+   "sessions": [
+    {
+     "date": "2026-10-29",
+     "value": 86.7,
+     "weight": 65.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "id": "D3E2AB55",
+   "title": "Incline Chest Fly (Dumbbell)",
+   "equipment": "dumbbell",
+   "group": "Chest",
+   "type": "weight_reps",
+   "measure": "best_set",
+   "sessions": [
+    {
+     "date": "2026-10-29",
+     "value": 50.0,
+     "weight": 50.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "id": "55E6546F",
+   "title": "Bent Over Row (Barbell)",
+   "equipment": "barbell",
+   "group": "Back",
+   "type": "weight_reps",
+   "measure": "e1rm",
+   "sessions": [
+    {
+     "date": "2026-10-21",
+     "value": 80.0,
+     "weight": 60.0,
+     "reps": 10
+    },
+    {
+     "date": "2026-10-30",
+     "value": 88.7,
+     "weight": 70.0,
+     "reps": 8
+    }
+   ]
+  },
+  {
+   "id": "473CF5B8",
+   "title": "Lat Pulldown (Machine)",
+   "equipment": "machine",
+   "group": "Back",
+   "type": "weight_reps",
+   "measure": "e1rm",
+   "sessions": [
+    {
+     "date": "2026-10-21",
+     "value": 120.0,
+     "weight": 90.0,
+     "reps": 10
+    },
+    {
+     "date": "2026-10-30",
+     "value": 133.3,
+     "weight": 100.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "id": "ABEC557F",
+   "title": "Shrug (Dumbbell)",
+   "equipment": "dumbbell",
+   "group": "Back",
+   "type": "weight_reps",
+   "measure": "best_set",
+   "sessions": [
+    {
+     "date": "2026-10-21",
+     "value": 40.0,
+     "weight": 40.0,
+     "reps": 10
+    },
+    {
+     "date": "2026-10-30",
+     "value": 100.0,
+     "weight": 100.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "id": "75A4F6C4",
+   "title": "Leg Extension (Machine)",
+   "equipment": "machine",
+   "group": "Legs",
+   "type": "weight_reps",
+   "measure": "best_set",
+   "sessions": [
+    {
+     "date": "2026-10-20",
+     "value": 100.0,
+     "weight": 100.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "id": "11A123F3",
+   "title": "Seated Leg Curl (Machine)",
+   "equipment": "machine",
+   "group": "Legs",
+   "type": "weight_reps",
+   "measure": "best_set",
+   "sessions": [
+    {
+     "date": "2026-10-20",
+     "value": 100.0,
+     "weight": 100.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "id": "9694DA61",
+   "title": "Squat (Bodyweight)",
+   "equipment": "none",
+   "group": "Legs",
+   "type": "reps_only",
+   "measure": "reps",
+   "sessions": [
+    {
+     "date": "2026-10-20",
+     "value": 25,
+     "reps": 25
+    }
+   ]
+  },
+  {
+   "id": "BE640BA0",
+   "title": "Face Pull",
+   "equipment": "machine",
+   "group": "Shoulders",
+   "type": "weight_reps",
+   "measure": "best_set",
+   "sessions": [
+    {
+     "date": "2026-10-21",
+     "value": 36.0,
+     "weight": 36.0,
+     "reps": 10
+    },
+    {
+     "date": "2026-10-30",
+     "value": 40.0,
+     "weight": 40.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "id": "422B08F1",
+   "title": "Lateral Raise (Dumbbell)",
+   "equipment": "dumbbell",
+   "group": "Shoulders",
+   "type": "weight_reps",
+   "measure": "best_set",
+   "sessions": [
+    {
+     "date": "2026-10-29",
+     "value": 30.0,
+     "weight": 30.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "id": "878CD1D0",
+   "title": "Shoulder Press (Dumbbell)",
+   "equipment": "dumbbell",
+   "group": "Shoulders",
+   "type": "weight_reps",
+   "measure": "e1rm",
+   "sessions": [
+    {
+     "date": "2026-10-29",
+     "value": 66.7,
+     "weight": 50.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "id": "37FCC2BB",
+   "title": "Bicep Curl (Dumbbell)",
+   "equipment": "dumbbell",
+   "group": "Arms",
+   "type": "weight_reps",
+   "measure": "best_set",
+   "sessions": [
+    {
+     "date": "2026-10-21",
+     "value": 20.0,
+     "weight": 20.0,
+     "reps": 8
+    },
+    {
+     "date": "2026-10-30",
+     "value": 40.0,
+     "weight": 40.0,
+     "reps": 6
+    }
+   ]
+  },
+  {
+   "id": "36E8F14E",
+   "title": "Hammer Curl (Cable)",
+   "equipment": "machine",
+   "group": "Arms",
+   "type": "weight_reps",
+   "measure": "best_set",
+   "sessions": [
+    {
+     "date": "2026-10-30",
+     "value": 44.0,
+     "weight": 44.0,
+     "reps": 7
+    }
+   ]
+  },
+  {
+   "id": "7E3BC8B6",
+   "title": "Hammer Curl (Dumbbell)",
+   "equipment": "dumbbell",
+   "group": "Arms",
+   "type": "weight_reps",
+   "measure": "best_set",
+   "sessions": [
+    {
+     "date": "2026-10-21",
+     "value": 20.0,
+     "weight": 20.0,
+     "reps": 8
+    }
+   ]
+  },
+  {
+   "id": "94B7239B",
+   "title": "Triceps Rope Pushdown",
+   "equipment": "machine",
+   "group": "Arms",
+   "type": "weight_reps",
+   "measure": "best_set",
+   "sessions": [
+    {
+     "date": "2026-10-29",
+     "value": 29.0,
+     "weight": 29.0,
+     "reps": 12
+    }
+   ]
+  }
+ ],
+ "generated_at": "2026-11-02T02:13:14+00:00"
+}

@@ -26,8 +26,13 @@ menu = [
     { name = "/posts", url = "/posts", weight = 1 },
     { name = "/about", url = "/about", weight = 3 },
     { name = "/people", url = "/people", weight = 3 },
+    { name = "/body", url = "/body", weight = 3 },
     { name = "/recommendations", url = "/recommendations", weight = 3 },
 ]
+
+# /body page. Up to 4 Hevy exercise titles to chart, e.g. ["Bench Press (Barbell)"].
+# Empty means the 4 most-trained exercises in the selected range.
+body = { pinned = [] }
 
 socials = [
     { name = "mastodon", url = "https://discuss.systems/@hdoshi", icon = "mastodon" },
