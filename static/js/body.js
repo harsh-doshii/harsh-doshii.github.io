@@ -185,10 +185,11 @@
 
   /* ---------- calendar heatmap: one hue, more volume = stronger ---------- */
   function heatmap(host, start, byDay) {
-    const cell = 12, gap = 2, offset = start.getDay();
+    const offset = start.getDay();
     const dates = [];
     for (const d = new Date(start); d <= today; d.setDate(d.getDate() + 1)) dates.push(new Date(d));
     const weeks = Math.ceil((dates.length + offset) / 7);
+    const cell = weeks <= 8 ? 20 : weeks <= 16 ? 16 : 12, gap = weeks <= 16 ? 3 : 2;
     const vols = dates.map((d) => (byDay[dayKey(d)] || {}).volume_lb || 0).filter(Boolean).sort((a, b) => a - b);
     const q = [0.2, 0.4, 0.6, 0.8].map((p) => vols[Math.floor(p * (vols.length - 1))] || 0);
     const bin = (v) => (v ? 1 + q.filter((t) => v > t).length : 0);
@@ -196,7 +197,7 @@
     const svg = svgEl('svg', { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: 'img', class: 'bp-heat', style: `width:${W}px;max-width:100%` });
     svg.setAttribute('aria-label', `Training calendar from ${fmtDate(start)}: ${vols.length} training days. Darker means more volume.`);
     ['Mon', 'Wed', 'Fri'].forEach((d, k) => {
-      const t = svgEl('text', { x: 0, y: 18 + (1 + 2 * k) * (cell + gap) + 10, class: 'bp-tick' });
+      const t = svgEl('text', { x: 0, y: 18 + (1 + 2 * k) * (cell + gap) + cell * 0.75, class: 'bp-tick' });
       t.textContent = d;
       svg.append(t);
     });
@@ -212,7 +213,7 @@
         svg.append(t);
       }
       const day = byDay[dayKey(d)];
-      const rect = svgEl('rect', { x: cx, y: cy, width: cell, height: cell, rx: 2, class: `bp-heat-${bin(day ? day.volume_lb : 0)}` });
+      const rect = svgEl('rect', { x: cx, y: cy, width: cell, height: cell, rx: cell > 12 ? 3 : 2, class: `bp-heat-${bin(day ? day.volume_lb : 0)}` });
       rect.addEventListener('pointerenter', () => {
         tip.replaceChildren(
           el('div', { class: 'bp-tip-date', text: fmtDateLong(d) }),
@@ -261,10 +262,13 @@
     RANGES.forEach(([n, label]) => {
       seg.append(el('button', { type: 'button', 'aria-pressed': String(n === range), text: label, onclick: () => { range = n; render(); } }));
     });
+    return el('div', { class: 'bp-filters' }, seg);
+  }
+
+  function statusLine() {
     const last = data.coverage.last_date ? parseDay(data.coverage.last_date) : null;
-    const status = el('div', { class: 'bp-status' }, el('span', { class: 'bp-status-dot', 'aria-hidden': 'true' }),
-      el('span', { text: last ? `Last workout ${fmtDate(last)} · ${data.coverage.workouts} logged since ${fmtDate(parseDay(data.coverage.first_date))} · from Hevy, refreshed nightly` : 'No workouts yet' }));
-    return el('div', { class: 'bp-filters' }, seg, status);
+    return el('div', { class: 'bp-status' }, el('span', { class: 'bp-status-dot', 'aria-hidden': 'true' }),
+      el('span', { text: last ? `Last workout ${fmtDate(last)} · ${data.coverage.workouts} logged since ${fmtDate(parseDay(data.coverage.first_date))} · from Hevy, refreshed nightly` : 'No workouts logged yet' }));
   }
 
   function inRange(sessions) {
@@ -289,8 +293,21 @@
       const bestP = points.reduce((a, p) => (p.value > a.value ? p : a));
       const card = el('div', { class: 'bp-card' }, el('h3', { text: ex.title }), el('div', { class: 'bp-meta', text: `${M.label} · best ${M.value(bestP.value, bestP)} · ${points.length} session${points.length === 1 ? '' : 's'}` }));
       grid.append(card);
-      if (points.length >= 2) pending.push(() => lineChart(card, ex, points));
-      else card.append(el('div', { class: 'bp-single' }, el('div', { class: 'bp-big', text: M.value(bestP.value, bestP) }), el('div', { class: 'bp-sub', text: `Logged once, ${fmtDate(parseDay(bestP.date))}. A line appears after the next session.` })));
+      if (points.length >= MIN_TREND) {
+        pending.push(() => lineChart(card, ex, points));
+        return;
+      }
+      // Too few sessions for an honest line: show the latest number and the change so far.
+      const latest = points[points.length - 1], firstP = points[0], delta = latest.value - firstP.value;
+      const change = points.length > 1
+        ? el('div', { class: 'bp-change' },
+            el('span', { class: Math.round(delta) === 0 ? 'bp-muted' : delta > 0 ? 'bp-good' : 'bp-bad', text: changeText(ex, delta) }),
+            document.createTextNode(` since ${fmtDate(parseDay(firstP.date))} (${M.value(firstP.value, firstP)})`))
+        : el('div', { class: 'bp-change bp-muted', text: `Logged once, ${fmtDate(parseDay(latest.date))}` });
+      const dots = el('div', { class: 'bp-progress', title: `Trend chart after ${MIN_TREND} sessions` },
+        ...Array.from({ length: MIN_TREND }, (_, i) => el('i', { class: i < points.length ? 'done' : '' })),
+        el('span', { text: `${points.length} of ${MIN_TREND} sessions for a trend chart` }));
+      card.append(el('div', { class: 'bp-stat' }, el('div', { class: 'bp-big', text: M.value(latest.value, latest) }), change, dots));
     });
     return { grid, pending, chosen: new Set(chosen.map((c) => c.ex.id)), auto: !pinned.length };
   }
@@ -334,6 +351,23 @@
     return tbl;
   }
 
+  // One row per training day, newest first: what each session looked like.
+  function recentSessions(days) {
+    const tbl = el('table', { class: 'bp-log bp-sessions' }, el('thead', {}, el('tr', {}, ...['Date', 'Duration', 'Working sets', 'Volume', 'Muscles'].map((h) => el('th', { scope: 'col', text: h })))));
+    const body = el('tbody');
+    tbl.append(body);
+    days.slice().reverse().slice(0, 8).forEach((d) => {
+      const muscles = Object.entries(d.groups).sort((a, b) => b[1] - a[1]).map(([g, n]) => `${g} ${n}`).join(' · ');
+      body.append(el('tr', {},
+        el('td', { class: 'bp-name', text: fmtDateLong(parseDay(d.date)) }),
+        el('td', { text: d.minutes ? `${d.minutes} min` : '–' }),
+        el('td', { text: String(d.working_sets) }),
+        el('td', { text: d.volume_lb ? `${d.volume_lb.toLocaleString('en-US')} lb` : '–' }),
+        el('td', { class: 'bp-muscles', text: muscles })));
+    });
+    return tbl;
+  }
+
   function render() {
     page.querySelectorAll('.bp-generated').forEach((n) => n.remove());
     const root = el('div', { class: 'bp-generated' });
@@ -343,14 +377,15 @@
     const byDay = Object.fromEntries(days.map((d) => [d.date, d]));
     const exs = data.exercises.map((ex) => ({ ex, points: inRange(ex.sessions) })).filter((r) => r.points.length);
 
-    root.append(filterRow());
-
-    root.append(...h2('Recovery'), el('p', { class: 'bp-placeholder', text: 'Sleep, resting heart rate, HRV and steps from my Fitbit Air will show up here once the Google Health sync is set up.' }));
+    root.append(statusLine(), filterRow());
+    // Recovery (Fitbit Air via Google Health) comes back once that sync exists; no placeholder.
 
     const f = featured(exs);
     root.append(...h2('Strength', f.auto ? 'My most-trained lifts in this range. Red dots are personal records.' : 'The lifts I care about most. Red dots are personal records.'));
     if (f.grid.childElementCount) root.append(f.grid);
     else root.append(el('p', { class: 'bp-placeholder', text: 'No lifts logged in this range.' }));
+
+    if (days.length) root.append(...h2('Recent sessions', 'The latest workouts in this range, newest first.'), recentSessions(days));
     const sessions = days.reduce((a, d) => a + d.sessions, 0), sets = days.reduce((a, d) => a + d.working_sets, 0), volume = days.reduce((a, d) => a + d.volume_lb, 0);
     // Per-week rate counts only the days since I started logging, not the empty part of the range.
     const first = data.coverage.first_date ? parseDay(data.coverage.first_date) : today;
@@ -365,6 +400,13 @@
     const heatHost = el('div', { class: 'bp-card' });
     root.append(heatHost);
 
+    // While the log is young, start the calendar at the week of the first workout
+    // instead of showing months of empty squares.
+    const firstWeek = new Date(first);
+    firstWeek.setDate(firstWeek.getDate() - firstWeek.getDay());
+    const calStart = firstWeek > rangeStart() ? firstWeek : rangeStart();
+    if (calStart > rangeStart()) heatHost.append(el('p', { class: 'bp-sub', text: `Starting the week of my first logged workout, ${fmtDate(first)}.` }));
+
     const groups = {};
     days.forEach((d) => Object.entries(d.groups).forEach(([g, n]) => (groups[g] = (groups[g] || 0) + n)));
     const items = GROUP_ORDER.filter((g) => groups[g]).map((g) => ({ label: g, value: groups[g] })).sort((a, b) => b.value - a.value);
@@ -378,7 +420,7 @@
 
     // Everything is in the page now, so charts can measure their real width.
     f.pending.forEach((draw) => draw());
-    heatmap(heatHost, rangeStart(), byDay);
+    heatmap(heatHost, calStart, byDay);
     if (items.length) bars(barHost, items);
   }
 
