@@ -3,28 +3,27 @@ title = "Privacy"
 path = "privacy"
 +++
 
-*Last updated: November 1, 2026*
+*Last updated: November 2, 2026*
 
 This page covers my [/body](/body/) page and the small app behind it, **doshi's scratchpad body sync**, which reads my own training and health data so I can show it here. It isn't offered to anyone else: the only account it ever signs in with is mine.
 
 ## What it reads
 
 - **Hevy** (my workout log): workouts, exercises and sets, through Hevy's API with my own key.
-- **Google Health API** (my Fitbit Air): daily steps, sleep, resting heart rate and heart rate variability. It asks Google for three **read-only** permissions:
+- **Google Health API**: daily steps, resting heart rate and heart rate variability. These are recorded by my Apple Watch; the Google Health app on my phone imports them from Apple Health. It asks Google for two **read-only** permissions:
   - `googlehealth.activity_and_fitness.readonly` for steps
-  - `googlehealth.sleep.readonly` for sleep
   - `googlehealth.health_metrics_and_measurements.readonly` for resting heart rate and HRV
 
-It never writes, edits or deletes anything in Hevy or Google Health, and it doesn't request location or GPS data.
+It never writes, edits or deletes anything in Hevy or Google Health, and it doesn't request sleep, location or GPS data.
 
 ## What gets published
 
 The sync turns that into daily summaries, which appear on the /body page and in a public data file in this site's GitHub repository:
 
 - **Training:** dates, workout duration, working sets, volume, the best set or estimated one-rep max per exercise, and sets per muscle.
-- **Health** (once the Fitbit sync is live): daily sleep duration, resting heart rate, HRV and steps.
+- **Health:** daily resting heart rate, HRV and steps.
 
-Left out on purpose: workout titles, descriptions and notes, the time of day I train, GPS or routes, and minute-by-minute heart rate.
+Left out on purpose: sleep, workout titles, descriptions and notes, the time of day I train, GPS or routes, and minute-by-minute heart rate.
 
 Because the data file lives in a public Git repository, past versions stay in its history.
 

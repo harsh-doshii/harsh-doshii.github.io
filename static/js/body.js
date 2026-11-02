@@ -72,6 +72,7 @@
   const RANGES = [[30, '30D'], [90, '90D'], [182, '6M'], [0, 'All']];
   const MIN_TREND = 4; // sessions before an exercise gets a trend line or change
   let data = null;
+  let health = null; // optional: static/data/health.json (Apple Watch via Google Health)
   let range = 90;
   const openGroups = new Set();
   let pinned = [];
@@ -82,7 +83,10 @@
   }
 
   const rangeStart = () => {
-    if (!range) return data.coverage.first_date ? parseDay(data.coverage.first_date) : today;
+    if (!range) {
+      const firsts = [data.coverage.first_date, health && health.coverage.first_date].filter(Boolean).sort();
+      return firsts.length ? parseDay(firsts[0]) : today;
+    }
     const d = new Date(today);
     d.setDate(d.getDate() - (range - 1));
     return d;
@@ -318,6 +322,162 @@
     bars(listHost, items.map((d) => ({ ...d, text: fmtSets(d.value) })));
   }
 
+  /* ---------- recovery: resting heart rate, HRV, steps ---------- */
+  const HEALTH_METRICS = [
+    { key: 'rhr', label: 'Resting heart rate', unit: 'bpm', better: 'down', fmt: (v) => String(Math.round(v)), tick: (v) => Math.round(v) },
+    { key: 'hrv', label: 'HRV', note: 'Apple Watch (SDNN)', unit: 'ms', better: 'up', fmt: (v) => String(Math.round(v)), tick: (v) => Math.round(v) },
+    { key: 'steps', label: 'Steps', unit: '', better: 'up', fmt: (v) => Math.round(v).toLocaleString('en-US'), tick: compact },
+  ];
+  const mean = (xs) => {
+    const v = xs.filter((x) => x != null);
+    return v.length ? v.reduce((a, b) => a + b, 0) / v.length : null;
+  };
+  // One row per calendar day in [from, to], with nulls where there's no reading.
+  function healthDays(from, to) {
+    const byDate = Object.fromEntries((health.daily || []).map((d) => [d.date, d]));
+    const out = [];
+    for (const d = new Date(from); d <= to; d.setDate(d.getDate() + 1)) out.push({ date: dayKey(d), ...(byDate[dayKey(d)] || {}) });
+    return out;
+  }
+  const rolling7 = (vals) => vals.map((_, i) => {
+    const w = vals.slice(Math.max(0, i - 6), i + 1).filter((v) => v != null);
+    return w.length >= 3 ? w.reduce((a, b) => a + b, 0) / w.length : null; // need 3 of 7 days for an average
+  });
+
+  function healthDelta(m, cur, prev) {
+    if (cur == null || prev == null) return null;
+    const d = cur - prev, r = m.key === 'steps' ? Math.round(d) : Math.round(d * 10) / 10;
+    if (Math.abs(r) < (m.key === 'steps' ? 50 : 0.5)) return { text: 'about the same', cls: 'bp-muted' };
+    const good = (m.better === 'up') === d > 0;
+    const amount = m.key === 'steps' ? Math.abs(r).toLocaleString('en-US') : `${Math.abs(r).toFixed(Math.abs(r) < 10 ? 1 : 0)} ${m.unit}`;
+    return { text: `${d > 0 ? '↑' : '↓'} ${amount} · ${good ? 'better' : 'worse'}`, cls: good ? 'bp-good' : 'bp-bad' };
+  }
+
+  // Daily values as a thin gray line, the 7-day average in ink; crosshair readout on hover/focus.
+  function healthChart(host, m, rows) {
+    const W = host.clientWidth || 440, H = 170, P = { t: 10, r: 8, b: 22, l: 44 };
+    const vals = rows.map((r) => (r[m.key] == null ? null : r[m.key])), avg = rolling7(vals);
+    const present = vals.filter((v) => v != null);
+    let lo = Math.min(...present), hi = Math.max(...present);
+    const pad = (hi - lo) * 0.12 || 1;
+    const ticks = niceTicks(Math.max(0, lo - pad), hi + pad, 3);
+    lo = ticks[0];
+    hi = ticks[ticks.length - 1];
+    const x = (i) => P.l + (i / Math.max(1, rows.length - 1)) * (W - P.l - P.r);
+    const y = (v) => P.t + (1 - (v - lo) / (hi - lo || 1)) * (H - P.t - P.b);
+    const svg = svgEl('svg', { viewBox: `0 0 ${W} ${H}`, height: H, tabindex: 0, role: 'img', class: 'bp-chart' });
+    svg.setAttribute('aria-label', `${m.label}, daily values and 7-day average from ${fmtDate(parseDay(rows[0].date))} to ${fmtDate(parseDay(rows[rows.length - 1].date))}. Use arrow keys to read values.`);
+    ticks.forEach((t) => {
+      svg.append(svgEl('line', { x1: P.l, x2: W - P.r, y1: y(t), y2: y(t), class: 'bp-grid' }));
+      const tx = svgEl('text', { x: P.l - 8, y: y(t) + 4, 'text-anchor': 'end', class: 'bp-tick' });
+      tx.textContent = m.tick(t);
+      svg.append(tx);
+    });
+    [[0, 'start'], [rows.length - 1, 'end']].forEach(([i, anchor]) => {
+      const tx = svgEl('text', { x: x(i), y: H - 4, 'text-anchor': anchor, class: 'bp-tick' });
+      tx.textContent = fmtDate(parseDay(rows[i].date));
+      svg.append(tx);
+    });
+    const path = (arr, cls) => {
+      let d = '', pen = false;
+      arr.forEach((v, i) => {
+        if (v == null) { pen = false; return; } // gaps stay gaps
+        d += `${pen ? 'L' : 'M'}${x(i).toFixed(1)},${y(v).toFixed(1)}`;
+        pen = true;
+      });
+      svg.append(svgEl('path', { d, class: cls }));
+    };
+    path(vals, 'bp-line-daily');
+    path(avg, 'bp-line-main');
+    const cross = svgEl('line', { y1: P.t, y2: H - P.b, class: 'bp-cross', opacity: 0 });
+    const dot = svgEl('circle', { r: 4.5, class: 'bp-dot-accent', opacity: 0 });
+    svg.append(cross, dot);
+    const tip = el('div', { class: 'bp-tip', role: 'status' });
+    host.append(svg, tip);
+    let idx = rows.length - 1;
+    const show = (i) => {
+      idx = Math.max(0, Math.min(rows.length - 1, i));
+      const cx = x(idx), v = avg[idx] != null ? avg[idx] : vals[idx];
+      cross.setAttribute('x1', cx);
+      cross.setAttribute('x2', cx);
+      cross.setAttribute('opacity', 1);
+      if (v != null) { dot.setAttribute('cx', cx); dot.setAttribute('cy', y(v)); dot.setAttribute('opacity', 1); } else dot.setAttribute('opacity', 0);
+      const row = (label, val, cls) => el('div', { class: 'bp-tip-row' }, el('span', {}, el('i', { class: `bp-key ${cls}` }), document.createTextNode(label)), el('strong', { text: val == null ? 'no reading' : `${m.fmt(val)}${m.unit ? ' ' + m.unit : ''}` }));
+      tip.replaceChildren(el('div', { class: 'bp-tip-date', text: fmtDateLong(parseDay(rows[idx].date)) }), row('7-day average', avg[idx], 'main'), row('That day', vals[idx], 'daily'));
+      tip.classList.add('on');
+      tip.style.left = Math.min(Math.max((cx / W) * host.clientWidth - 85, 0), host.clientWidth - 180) + 'px';
+    };
+    const hide = () => { cross.setAttribute('opacity', 0); dot.setAttribute('opacity', 0); tip.classList.remove('on'); };
+    svg.addEventListener('pointermove', (e) => {
+      const r = svg.getBoundingClientRect();
+      show(Math.round((((e.clientX - r.left) / r.width) * W - P.l) / (W - P.l - P.r) * (rows.length - 1)));
+    });
+    svg.addEventListener('pointerleave', hide);
+    svg.addEventListener('focus', () => show(idx));
+    svg.addEventListener('blur', hide);
+    svg.addEventListener('keydown', (e) => {
+      const keys = { ArrowLeft: idx - 1, ArrowRight: idx + 1, Home: 0, End: rows.length - 1 };
+      if (e.key in keys) { show(keys[e.key]); e.preventDefault(); } else if (e.key === 'Escape') hide();
+    });
+  }
+
+  // Returns [heading parts..., tiles, chart grid] and a list of charts to draw after layout.
+  function recovery() {
+    const from = rangeStart(), to = today;
+    const span = Math.round((to - from) / 864e5) + 1;
+    const prevTo = new Date(from); prevTo.setDate(prevTo.getDate() - 1);
+    const prevFrom = new Date(prevTo); prevFrom.setDate(prevFrom.getDate() - (span - 1));
+    const rows = healthDays(from, to), prev = healthDays(prevFrom, prevTo);
+    const parts = [...h2('Recovery', `Daily values from my Apple Watch, through Google Health. Averages over this range, compared with the ${span} days before.`)];
+    const tiles = el('div', { class: 'bp-kpis' }), grid = el('div', { class: 'bp-grid2 bp-health-grid' }), pending = [];
+    HEALTH_METRICS.forEach((m) => {
+      const vals = rows.map((r) => r[m.key]).filter((v) => v != null);
+      if (!vals.length) return;
+      const prevVals = prev.map((r) => r[m.key]).filter((v) => v != null);
+      // Only compare when the earlier period has at least half as many readings.
+      const d = prevVals.length >= vals.length / 2 ? healthDelta(m, mean(vals), mean(prevVals)) : null;
+      const last30 = healthDays(new Date(today.getTime() - 29 * 864e5), today).map((r) => r[m.key]).filter((v) => v != null);
+      tiles.append(el('div', { class: 'bp-tile' },
+        el('div', { class: 'bp-tile-label', text: m.note ? `${m.label} · ${m.note}` : m.label }),
+        el('div', { class: 'bp-tile-value' }, document.createTextNode(m.fmt(mean(vals))), m.unit ? el('small', { text: m.unit }) : null),
+        d ? el('div', { class: 'bp-change' }, el('span', { class: d.cls, text: d.text }), document.createTextNode(` vs previous ${span} days`)) : el('div', { class: 'bp-change bp-muted', text: `Average of ${vals.length} days` }),
+        last30.length >= 2 ? sparkline(last30, 220, 36) : null));
+      const card = el('div', { class: 'bp-card' }, el('h3', { text: m.label }), el('div', { class: 'bp-meta', text: `${m.better === 'down' ? 'Lower' : 'Higher'} is better${m.note ? ' · ' + m.note : ''}` }));
+      grid.append(card);
+      if (vals.length >= 7) pending.push(() => healthChart(card, m, rows));
+      else card.append(el('p', { class: 'bp-sub', text: `${vals.length} reading${vals.length === 1 ? '' : 's'} in this range; the chart appears after 7.` }));
+    });
+    if (!tiles.childElementCount) return { parts: [], pending: [] };
+    const legend = el('div', { class: 'bp-legend' }, el('span', {}, el('i', { class: 'bp-key daily' }), 'That day'), el('span', {}, el('i', { class: 'bp-key main' }), '7-day average'));
+    parts.push(tiles, legend, grid);
+    return { parts, pending };
+  }
+
+  function vitalsTable() {
+    const from = rangeStart(), span = Math.round((today - from) / 864e5) + 1;
+    const rows = healthDays(from, today);
+    const tbl = el('table', { class: 'bp-log' }, el('thead', {}, el('tr', {}, ...['Metric', 'Latest', '7-day avg', `${span}-day avg`, `Last 30 days`].map((h) => el('th', { scope: 'col', text: h })))));
+    const body = el('tbody');
+    tbl.append(body);
+    HEALTH_METRICS.forEach((m) => {
+      const vals = rows.map((r) => r[m.key]);
+      const present = vals.filter((v) => v != null);
+      if (!present.length) return;
+      const latestRow = [...rows].reverse().find((r) => r[m.key] != null);
+      const last30 = rows.slice(-30).map((r) => r[m.key]).filter((v) => v != null);
+      const cell = el('td', { class: 'bp-spark-cell' });
+      if (last30.length >= 2) cell.append(sparkline(last30));
+      const unit = m.unit ? ` ${m.unit}` : '';
+      body.append(el('tr', {},
+        el('td', { class: 'bp-name' }, document.createTextNode(m.label), el('span', { class: 'bp-kind', text: m.better === 'down' ? 'lower is better' : 'higher is better' })),
+        el('td', {}, document.createTextNode(m.fmt(latestRow[m.key]) + unit), el('span', { class: 'bp-kind', text: fmtDate(parseDay(latestRow.date)) })),
+        el('td', { text: mean(vals.slice(-7)) == null ? '–' : m.fmt(mean(vals.slice(-7))) + unit }),
+        el('td', { text: m.fmt(mean(present)) + unit }),
+        cell));
+    });
+    return body.childElementCount ? tbl : null;
+  }
+
   /* ---------- sections ---------- */
   // The theme already prefixes h2 with a red "## ", like headings in posts.
   const h2 = (title, sub) => [el('h2', { class: 'bp-h2', text: title }), ...(sub ? [el('p', { class: 'bp-sub', text: sub })] : [])];
@@ -332,8 +492,12 @@
 
   function statusLine() {
     const last = data.coverage.last_date ? parseDay(data.coverage.last_date) : null;
-    return el('div', { class: 'bp-status' }, el('span', { class: 'bp-status-dot', 'aria-hidden': 'true' }),
-      el('span', { text: last ? `Last workout ${fmtDate(last)} · ${data.coverage.workouts} logged since ${fmtDate(parseDay(data.coverage.first_date))} · from Hevy, refreshed nightly` : 'No workouts logged yet' }));
+    const line = (text) => el('div', { class: 'bp-status' }, el('span', { class: 'bp-status-dot', 'aria-hidden': 'true' }), el('span', { text }));
+    const lines = el('div', { class: 'bp-status-lines' },
+      line(last ? `Last workout ${fmtDate(last)} · ${data.coverage.workouts} logged since ${fmtDate(parseDay(data.coverage.first_date))} · from Hevy` : 'No workouts logged yet'));
+    if (health && health.coverage.last_date) lines.append(line(`Heart and steps through ${fmtDate(parseDay(health.coverage.last_date))} · from my Apple Watch, via Google Health`));
+    lines.append(el('div', { class: 'bp-status-note', text: 'Refreshed every morning.' }));
+    return lines;
   }
 
   function inRange(sessions) {
@@ -443,7 +607,8 @@
     const exs = data.exercises.map((ex) => ({ ex, points: inRange(ex.sessions) })).filter((r) => r.points.length);
 
     root.append(statusLine(), filterRow());
-    // Recovery (Fitbit Air via Google Health) comes back once that sync exists; no placeholder.
+    const rec = health ? recovery() : { parts: [], pending: [] };
+    root.append(...rec.parts);
 
     const f = featured(exs);
     root.append(...h2('Strength', f.auto ? 'My most-trained lifts in this range. Red dots are personal records.' : 'The lifts I care about most. Red dots are personal records.'));
@@ -478,24 +643,29 @@
     const hasMuscles = Object.values(totals).some((n) => n > 0);
     if (hasMuscles) root.append(...h2('Where the sets go', 'Working sets per muscle in this range, across every exercise. A set counts fully for the main muscle and half for each helper muscle.'), mapHost);
 
+    const vitals = health ? vitalsTable() : null;
+    if (vitals) root.append(...h2('Vitals', 'The same heart and step numbers as a table.'), vitals);
+
     if (exs.length) root.append(...h2('All lifts', `Every exercise I did in this range, grouped by muscle. Change and trend appear once an exercise has ${MIN_TREND} or more sessions.`), allLifts(exs, f.chosen));
 
     root.append(el('details', { class: 'bp-method' }, el('summary', { text: 'How these numbers are calculated' }),
       el('ul', {}, ...Object.values(data.methodology || {}).map((t) => el('li', { text: t })))));
 
     // Everything is in the page now, so charts can measure their real width.
+    rec.pending.forEach((draw) => draw());
     f.pending.forEach((draw) => draw());
     heatmap(heatHost, calStart, byDay);
     if (hasMuscles) muscleMap(mapHost, totals);
   }
 
-  fetch(page.dataset.liftingUrl, { cache: 'no-store', credentials: 'omit' })
-    .then((r) => {
-      if (!r.ok) throw new Error(r.status);
-      return r.json();
-    })
-    .then((json) => {
-      data = json;
+  const getJSON = (url) => fetch(url, { cache: 'no-store', credentials: 'omit' }).then((r) => {
+    if (!r.ok) throw new Error(r.status);
+    return r.json();
+  });
+  Promise.all([getJSON(page.dataset.liftingUrl), page.dataset.healthUrl ? getJSON(page.dataset.healthUrl).catch(() => null) : null])
+    .then(([lifting, healthJson]) => {
+      data = lifting;
+      health = healthJson; // a missing health file just hides the Recovery section
       render();
       let t;
       window.addEventListener('resize', () => {

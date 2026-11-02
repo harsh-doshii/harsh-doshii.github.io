@@ -5,6 +5,7 @@
 
     <main class="body-page" id="body-page"
           data-lifting-url="{{ get_url(path='data/lifting.json') }}"
+          data-health-url="{{ get_url(path='data/health.json') }}"
           data-pinned="{{ config.extra.body.pinned | default(value=[]) | json_encode() }}">
         <div class="body-intro">{{ page.content | safe }}</div>
         <noscript><p>The charts on this page need JavaScript.</p></noscript>

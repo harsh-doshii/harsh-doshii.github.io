@@ -1,8 +1,11 @@
-# Pulls training data from Hevy every morning and commits static/data/lifting.json
-# when it changed. That push then runs "Build and deploy GH Pages" (main.yml).
+# Pulls training data from Hevy and heart/steps data from Google Health every morning,
+# and commits static/data/lifting.json and health.json when they changed. That push then
+# runs "Build and deploy GH Pages" (main.yml).
 #
 # Secrets needed (Settings -> Secrets and variables -> Actions):
 #   HEVY_API_KEY  the Hevy Pro API key (read-only use; the script only makes GET requests)
+#   GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_REFRESH_TOKEN
+#                 from scripts/google_health_auth.py (read-only Google Health scopes)
 #   TOKEN         the existing personal access token main.yml already uses. A push made
 #                 with the default GITHUB_TOKEN would NOT start main.yml, so the site
 #                 would never redeploy.
@@ -35,14 +38,24 @@ jobs:
           HEVY_API_KEY: ${{ secrets.HEVY_API_KEY }}
         run: python3 scripts/sync_hevy.py
 
+      - name: pull from Google Health
+        # If Google fails (for example an expired sign-in), still publish the Hevy data;
+        # the run shows a warning and the page keeps the last good health data.
+        continue-on-error: true
+        env:
+          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+          GOOGLE_REFRESH_TOKEN: ${{ secrets.GOOGLE_REFRESH_TOKEN }}
+        run: python3 scripts/sync_google_health.py
+
       - name: commit if changed
         run: |
-          git add static/data/lifting.json
+          git add static/data/lifting.json static/data/health.json
           if git diff --cached --quiet; then
             echo "No new training data."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "body: sync training data"
+          git commit -m "body: sync training and health data"
           git push origin master
