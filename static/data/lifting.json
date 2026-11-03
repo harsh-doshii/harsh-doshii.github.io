@@ -5,8 +5,8 @@
  "timezone": "America/Los_Angeles",
  "coverage": {
   "first_date": "2026-10-20",
-  "last_date": "2026-10-30",
-  "workouts": 4
+  "last_date": "2026-11-02",
+  "workouts": 5
  },
  "methodology": {
   "working_sets": "Warm-up sets are excluded everywhere.",
@@ -93,6 +93,22 @@
     "shoulders": 3.0,
     "traps": 3.0,
     "upper_back": 4.5
+   }
+  },
+  {
+   "date": "2026-11-02",
+   "sessions": 1,
+   "minutes": 33,
+   "working_sets": 9,
+   "volume_lb": 13900,
+   "groups": {
+    "Legs": 9
+   },
+   "muscles": {
+    "calves": 1.5,
+    "glutes": 1.5,
+    "hamstrings": 4.5,
+    "quadriceps": 6.0
    }
   }
  ],
@@ -224,6 +240,12 @@
      "value": 100.0,
      "weight": 100.0,
      "reps": 10
+    },
+    {
+     "date": "2026-11-02",
+     "value": 130.0,
+     "weight": 130.0,
+     "reps": 12
     }
    ]
   },
@@ -239,6 +261,28 @@
      "date": "2026-10-20",
      "value": 100.0,
      "weight": 100.0,
+     "reps": 10
+    },
+    {
+     "date": "2026-11-02",
+     "value": 110.0,
+     "weight": 110.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "id": "C7973E0E",
+   "title": "Leg Press (Machine)",
+   "equipment": "machine",
+   "group": "Legs",
+   "type": "weight_reps",
+   "measure": "e1rm",
+   "sessions": [
+    {
+     "date": "2026-11-02",
+     "value": 280.0,
+     "weight": 210.0,
      "reps": 10
     }
    ]
@@ -383,5 +427,5 @@
    ]
   }
  ],
- "generated_at": "2026-11-02T02:52:19+00:00"
+ "generated_at": "2026-11-03T02:06:36+00:00"
 }
