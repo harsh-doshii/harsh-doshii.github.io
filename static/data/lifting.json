@@ -5,8 +5,8 @@
  "timezone": "America/Los_Angeles",
  "coverage": {
   "first_date": "2026-10-20",
-  "last_date": "2026-11-02",
-  "workouts": 5
+  "last_date": "2026-11-03",
+  "workouts": 6
  },
  "methodology": {
   "working_sets": "Warm-up sets are excluded everywhere.",
@@ -110,6 +110,23 @@
     "hamstrings": 4.5,
     "quadriceps": 6.0
    }
+  },
+  {
+   "date": "2026-11-03",
+   "sessions": 1,
+   "minutes": 64,
+   "working_sets": 20,
+   "volume_lb": 9164,
+   "groups": {
+    "Chest": 9,
+    "Shoulders": 6,
+    "Arms": 5
+   },
+   "muscles": {
+    "chest": 9.0,
+    "shoulders": 9.0,
+    "triceps": 9.5
+   }
   }
  ],
  "exercises": [
@@ -123,6 +140,12 @@
    "sessions": [
     {
      "date": "2026-10-29",
+     "value": 100.0,
+     "weight": 75.0,
+     "reps": 10
+    },
+    {
+     "date": "2026-11-03",
      "value": 100.0,
      "weight": 75.0,
      "reps": 10
@@ -142,6 +165,12 @@
      "value": 86.7,
      "weight": 65.0,
      "reps": 10
+    },
+    {
+     "date": "2026-11-03",
+     "value": 93.3,
+     "weight": 70.0,
+     "reps": 10
     }
    ]
   },
@@ -158,6 +187,12 @@
      "value": 50.0,
      "weight": 50.0,
      "reps": 10
+    },
+    {
+     "date": "2026-11-03",
+     "value": 50.0,
+     "weight": 50.0,
+     "reps": 11
     }
    ]
   },
@@ -337,6 +372,12 @@
      "value": 30.0,
      "weight": 30.0,
      "reps": 12
+    },
+    {
+     "date": "2026-11-03",
+     "value": 50.0,
+     "weight": 50.0,
+     "reps": 5
     }
    ]
   },
@@ -353,6 +394,12 @@
      "value": 66.7,
      "weight": 50.0,
      "reps": 10
+    },
+    {
+     "date": "2026-11-03",
+     "value": 60.0,
+     "weight": 50.0,
+     "reps": 6
     }
    ]
   },
@@ -374,6 +421,28 @@
      "date": "2026-10-30",
      "value": 40.0,
      "weight": 40.0,
+     "reps": 6
+    }
+   ]
+  },
+  {
+   "id": "94B7239B",
+   "title": "Triceps Rope Pushdown",
+   "equipment": "machine",
+   "group": "Arms",
+   "type": "weight_reps",
+   "measure": "best_set",
+   "sessions": [
+    {
+     "date": "2026-10-29",
+     "value": 29.0,
+     "weight": 29.0,
+     "reps": 12
+    },
+    {
+     "date": "2026-11-03",
+     "value": 29.0,
+     "weight": 29.0,
      "reps": 6
     }
    ]
@@ -411,21 +480,21 @@
    ]
   },
   {
-   "id": "94B7239B",
-   "title": "Triceps Rope Pushdown",
+   "id": "3092FADD",
+   "title": "Triceps Extension (Machine)",
    "equipment": "machine",
    "group": "Arms",
    "type": "weight_reps",
    "measure": "best_set",
    "sessions": [
     {
-     "date": "2026-10-29",
-     "value": 29.0,
-     "weight": 29.0,
-     "reps": 12
+     "date": "2026-11-03",
+     "value": 55.0,
+     "weight": 55.0,
+     "reps": 6
     }
    ]
   }
  ],
- "generated_at": "2026-11-03T02:06:36+00:00"
+ "generated_at": "2026-11-04T02:55:04+00:00"
 }
