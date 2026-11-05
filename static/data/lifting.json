@@ -5,8 +5,8 @@
  "timezone": "America/Los_Angeles",
  "coverage": {
   "first_date": "2026-10-20",
-  "last_date": "2026-11-03",
-  "workouts": 6
+  "last_date": "2026-11-04",
+  "workouts": 7
  },
  "methodology": {
   "working_sets": "Warm-up sets are excluded everywhere.",
@@ -127,6 +127,27 @@
     "shoulders": 9.0,
     "triceps": 9.5
    }
+  },
+  {
+   "date": "2026-11-04",
+   "sessions": 1,
+   "minutes": 50,
+   "working_sets": 21,
+   "volume_lb": 12985,
+   "groups": {
+    "Back": 9,
+    "Shoulders": 3,
+    "Arms": 9
+   },
+   "muscles": {
+    "biceps": 10.5,
+    "forearms": 7.5,
+    "lats": 4.5,
+    "neck": 1.5,
+    "shoulders": 3.0,
+    "traps": 3.0,
+    "upper_back": 4.5
+   }
   }
  ],
  "exercises": [
@@ -215,6 +236,12 @@
      "value": 88.7,
      "weight": 70.0,
      "reps": 8
+    },
+    {
+     "date": "2026-11-04",
+     "value": 93.3,
+     "weight": 70.0,
+     "reps": 10
     }
    ]
   },
@@ -237,6 +264,12 @@
      "value": 133.3,
      "weight": 100.0,
      "reps": 10
+    },
+    {
+     "date": "2026-11-04",
+     "value": 133.0,
+     "weight": 105.0,
+     "reps": 8
     }
    ]
   },
@@ -256,6 +289,12 @@
     },
     {
      "date": "2026-10-30",
+     "value": 100.0,
+     "weight": 100.0,
+     "reps": 12
+    },
+    {
+     "date": "2026-11-04",
      "value": 100.0,
      "weight": 100.0,
      "reps": 12
@@ -356,6 +395,12 @@
      "value": 40.0,
      "weight": 40.0,
      "reps": 10
+    },
+    {
+     "date": "2026-11-04",
+     "value": 40.0,
+     "weight": 40.0,
+     "reps": 12
     }
    ]
   },
@@ -422,6 +467,34 @@
      "value": 40.0,
      "weight": 40.0,
      "reps": 6
+    },
+    {
+     "date": "2026-11-04",
+     "value": 40.0,
+     "weight": 40.0,
+     "reps": 8
+    }
+   ]
+  },
+  {
+   "id": "36E8F14E",
+   "title": "Hammer Curl (Cable)",
+   "equipment": "machine",
+   "group": "Arms",
+   "type": "weight_reps",
+   "measure": "best_set",
+   "sessions": [
+    {
+     "date": "2026-10-30",
+     "value": 44.0,
+     "weight": 44.0,
+     "reps": 7
+    },
+    {
+     "date": "2026-11-04",
+     "value": 44.0,
+     "weight": 44.0,
+     "reps": 7
     }
    ]
   },
@@ -448,18 +521,18 @@
    ]
   },
   {
-   "id": "36E8F14E",
-   "title": "Hammer Curl (Cable)",
-   "equipment": "machine",
+   "id": "DDB29047",
+   "title": "Behind the Back Wrist Curl (Barbell)",
+   "equipment": "barbell",
    "group": "Arms",
    "type": "weight_reps",
    "measure": "best_set",
    "sessions": [
     {
-     "date": "2026-10-30",
-     "value": 44.0,
-     "weight": 44.0,
-     "reps": 7
+     "date": "2026-11-04",
+     "value": 30.0,
+     "weight": 30.0,
+     "reps": 25
     }
    ]
   },
@@ -496,5 +569,5 @@
    ]
   }
  ],
- "generated_at": "2026-11-04T02:55:04+00:00"
+ "generated_at": "2026-11-05T01:34:14+00:00"
 }
