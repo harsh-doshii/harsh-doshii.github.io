@@ -5,8 +5,8 @@
  "timezone": "America/Los_Angeles",
  "coverage": {
   "first_date": "2026-10-20",
-  "last_date": "2026-11-04",
-  "workouts": 7
+  "last_date": "2026-11-17",
+  "workouts": 8
  },
  "methodology": {
   "working_sets": "Warm-up sets are excluded everywhere.",
@@ -148,6 +148,24 @@
     "traps": 3.0,
     "upper_back": 4.5
    }
+  },
+  {
+   "date": "2026-11-17",
+   "sessions": 1,
+   "minutes": 70,
+   "working_sets": 22,
+   "volume_lb": 11410,
+   "groups": {
+    "Chest": 9,
+    "Shoulders": 6,
+    "Arms": 7
+   },
+   "muscles": {
+    "chest": 9.0,
+    "forearms": 3.0,
+    "shoulders": 9.0,
+    "triceps": 8.5
+   }
   }
  ],
  "exercises": [
@@ -169,6 +187,12 @@
      "date": "2026-11-03",
      "value": 100.0,
      "weight": 75.0,
+     "reps": 10
+    },
+    {
+     "date": "2026-11-17",
+     "value": 106.7,
+     "weight": 80.0,
      "reps": 10
     }
    ]
@@ -192,6 +216,12 @@
      "value": 93.3,
      "weight": 70.0,
      "reps": 10
+    },
+    {
+     "date": "2026-11-17",
+     "value": 100.0,
+     "weight": 75.0,
+     "reps": 10
     }
    ]
   },
@@ -214,6 +244,12 @@
      "value": 50.0,
      "weight": 50.0,
      "reps": 11
+    },
+    {
+     "date": "2026-11-17",
+     "value": 50.0,
+     "weight": 50.0,
+     "reps": 12
     }
    ]
   },
@@ -423,6 +459,12 @@
      "value": 50.0,
      "weight": 50.0,
      "reps": 5
+    },
+    {
+     "date": "2026-11-17",
+     "value": 40.0,
+     "weight": 40.0,
+     "reps": 10
     }
    ]
   },
@@ -445,6 +487,12 @@
      "value": 60.0,
      "weight": 50.0,
      "reps": 6
+    },
+    {
+     "date": "2026-11-17",
+     "value": 63.3,
+     "weight": 50.0,
+     "reps": 8
     }
    ]
   },
@@ -477,6 +525,56 @@
    ]
   },
   {
+   "id": "94B7239B",
+   "title": "Triceps Rope Pushdown",
+   "equipment": "machine",
+   "group": "Arms",
+   "type": "weight_reps",
+   "measure": "best_set",
+   "sessions": [
+    {
+     "date": "2026-10-29",
+     "value": 29.0,
+     "weight": 29.0,
+     "reps": 12
+    },
+    {
+     "date": "2026-11-03",
+     "value": 29.0,
+     "weight": 29.0,
+     "reps": 6
+    },
+    {
+     "date": "2026-11-17",
+     "value": 29.0,
+     "weight": 29.0,
+     "reps": 8
+    }
+   ]
+  },
+  {
+   "id": "DDB29047",
+   "title": "Behind the Back Wrist Curl (Barbell)",
+   "equipment": "barbell",
+   "group": "Arms",
+   "type": "weight_reps",
+   "measure": "best_set",
+   "sessions": [
+    {
+     "date": "2026-11-04",
+     "value": 30.0,
+     "weight": 30.0,
+     "reps": 25
+    },
+    {
+     "date": "2026-11-17",
+     "value": 30.0,
+     "weight": 30.0,
+     "reps": 25
+    }
+   ]
+  },
+  {
    "id": "36E8F14E",
    "title": "Hammer Curl (Cable)",
    "equipment": "machine",
@@ -499,40 +597,24 @@
    ]
   },
   {
-   "id": "94B7239B",
-   "title": "Triceps Rope Pushdown",
+   "id": "3092FADD",
+   "title": "Triceps Extension (Machine)",
    "equipment": "machine",
    "group": "Arms",
    "type": "weight_reps",
    "measure": "best_set",
    "sessions": [
     {
-     "date": "2026-10-29",
-     "value": 29.0,
-     "weight": 29.0,
-     "reps": 12
+     "date": "2026-11-03",
+     "value": 55.0,
+     "weight": 55.0,
+     "reps": 6
     },
     {
-     "date": "2026-11-03",
-     "value": 29.0,
-     "weight": 29.0,
-     "reps": 6
-    }
-   ]
-  },
-  {
-   "id": "DDB29047",
-   "title": "Behind the Back Wrist Curl (Barbell)",
-   "equipment": "barbell",
-   "group": "Arms",
-   "type": "weight_reps",
-   "measure": "best_set",
-   "sessions": [
-    {
-     "date": "2026-11-04",
-     "value": 30.0,
-     "weight": 30.0,
-     "reps": 25
+     "date": "2026-11-17",
+     "value": 50.0,
+     "weight": 50.0,
+     "reps": 10
     }
    ]
   },
@@ -551,23 +633,7 @@
      "reps": 8
     }
    ]
-  },
-  {
-   "id": "3092FADD",
-   "title": "Triceps Extension (Machine)",
-   "equipment": "machine",
-   "group": "Arms",
-   "type": "weight_reps",
-   "measure": "best_set",
-   "sessions": [
-    {
-     "date": "2026-11-03",
-     "value": 55.0,
-     "weight": 55.0,
-     "reps": 6
-    }
-   ]
   }
  ],
- "generated_at": "2026-11-05T01:34:14+00:00"
+ "generated_at": "2026-11-18T01:20:42+00:00"
 }
