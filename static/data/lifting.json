@@ -5,8 +5,8 @@
  "timezone": "America/Los_Angeles",
  "coverage": {
   "first_date": "2026-10-20",
-  "last_date": "2026-11-17",
-  "workouts": 8
+  "last_date": "2026-11-18",
+  "workouts": 9
  },
  "methodology": {
   "working_sets": "Warm-up sets are excluded everywhere.",
@@ -166,6 +166,27 @@
     "shoulders": 9.0,
     "triceps": 8.5
    }
+  },
+  {
+   "date": "2026-11-18",
+   "sessions": 1,
+   "minutes": 60,
+   "working_sets": 21,
+   "volume_lb": 15014,
+   "groups": {
+    "Back": 9,
+    "Shoulders": 3,
+    "Arms": 9
+   },
+   "muscles": {
+    "biceps": 10.5,
+    "forearms": 7.5,
+    "lats": 4.5,
+    "neck": 1.5,
+    "shoulders": 3.0,
+    "traps": 3.0,
+    "upper_back": 4.5
+   }
   }
  ],
  "exercises": [
@@ -278,6 +299,12 @@
      "value": 93.3,
      "weight": 70.0,
      "reps": 10
+    },
+    {
+     "date": "2026-11-18",
+     "value": 91.0,
+     "weight": 70.0,
+     "reps": 9
     }
    ]
   },
@@ -305,6 +332,12 @@
      "date": "2026-11-04",
      "value": 133.0,
      "weight": 105.0,
+     "reps": 8
+    },
+    {
+     "date": "2026-11-18",
+     "value": 139.3,
+     "weight": 110.0,
      "reps": 8
     }
    ]
@@ -334,6 +367,12 @@
      "value": 100.0,
      "weight": 100.0,
      "reps": 12
+    },
+    {
+     "date": "2026-11-18",
+     "value": 100.0,
+     "weight": 100.0,
+     "reps": 15
     }
    ]
   },
@@ -437,6 +476,12 @@
      "value": 40.0,
      "weight": 40.0,
      "reps": 12
+    },
+    {
+     "date": "2026-11-18",
+     "value": 44.0,
+     "weight": 44.0,
+     "reps": 8
     }
    ]
   },
@@ -521,6 +566,68 @@
      "value": 40.0,
      "weight": 40.0,
      "reps": 8
+    },
+    {
+     "date": "2026-11-18",
+     "value": 40.0,
+     "weight": 40.0,
+     "reps": 8
+    }
+   ]
+  },
+  {
+   "id": "DDB29047",
+   "title": "Behind the Back Wrist Curl (Barbell)",
+   "equipment": "barbell",
+   "group": "Arms",
+   "type": "weight_reps",
+   "measure": "best_set",
+   "sessions": [
+    {
+     "date": "2026-11-04",
+     "value": 30.0,
+     "weight": 30.0,
+     "reps": 25
+    },
+    {
+     "date": "2026-11-17",
+     "value": 30.0,
+     "weight": 30.0,
+     "reps": 25
+    },
+    {
+     "date": "2026-11-18",
+     "value": 40.0,
+     "weight": 40.0,
+     "reps": 25
+    }
+   ]
+  },
+  {
+   "id": "36E8F14E",
+   "title": "Hammer Curl (Cable)",
+   "equipment": "machine",
+   "group": "Arms",
+   "type": "weight_reps",
+   "measure": "best_set",
+   "sessions": [
+    {
+     "date": "2026-10-30",
+     "value": 44.0,
+     "weight": 44.0,
+     "reps": 7
+    },
+    {
+     "date": "2026-11-04",
+     "value": 44.0,
+     "weight": 44.0,
+     "reps": 7
+    },
+    {
+     "date": "2026-11-18",
+     "value": 44.0,
+     "weight": 44.0,
+     "reps": 10
     }
    ]
   },
@@ -549,50 +656,6 @@
      "value": 29.0,
      "weight": 29.0,
      "reps": 8
-    }
-   ]
-  },
-  {
-   "id": "DDB29047",
-   "title": "Behind the Back Wrist Curl (Barbell)",
-   "equipment": "barbell",
-   "group": "Arms",
-   "type": "weight_reps",
-   "measure": "best_set",
-   "sessions": [
-    {
-     "date": "2026-11-04",
-     "value": 30.0,
-     "weight": 30.0,
-     "reps": 25
-    },
-    {
-     "date": "2026-11-17",
-     "value": 30.0,
-     "weight": 30.0,
-     "reps": 25
-    }
-   ]
-  },
-  {
-   "id": "36E8F14E",
-   "title": "Hammer Curl (Cable)",
-   "equipment": "machine",
-   "group": "Arms",
-   "type": "weight_reps",
-   "measure": "best_set",
-   "sessions": [
-    {
-     "date": "2026-10-30",
-     "value": 44.0,
-     "weight": 44.0,
-     "reps": 7
-    },
-    {
-     "date": "2026-11-04",
-     "value": 44.0,
-     "weight": 44.0,
-     "reps": 7
     }
    ]
   },
@@ -635,5 +698,5 @@
    ]
   }
  ],
- "generated_at": "2026-11-18T01:20:42+00:00"
+ "generated_at": "2026-11-19T02:08:05+00:00"
 }
