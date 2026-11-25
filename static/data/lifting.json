@@ -5,8 +5,8 @@
  "timezone": "America/Los_Angeles",
  "coverage": {
   "first_date": "2026-10-20",
-  "last_date": "2026-11-18",
-  "workouts": 9
+  "last_date": "2026-11-24",
+  "workouts": 10
  },
  "methodology": {
   "working_sets": "Warm-up sets are excluded everywhere.",
@@ -186,6 +186,31 @@
     "shoulders": 3.0,
     "traps": 3.0,
     "upper_back": 4.5
+   }
+  },
+  {
+   "date": "2026-11-24",
+   "sessions": 1,
+   "minutes": 5,
+   "working_sets": 26,
+   "volume_lb": 7209,
+   "groups": {
+    "Back": 6,
+    "Legs": 9,
+    "Arms": 3,
+    "Core": 8
+   },
+   "muscles": {
+    "abdominals": 8.0,
+    "biceps": 5.0,
+    "forearms": 2.0,
+    "glutes": 8.0,
+    "hamstrings": 7.5,
+    "lats": 8.5,
+    "lower_back": 6.5,
+    "quadriceps": 2.5,
+    "traps": 2.5,
+    "upper_back": 6.5
    }
   }
  ],
@@ -377,6 +402,36 @@
    ]
   },
   {
+   "id": "4F5866F8",
+   "title": "Back Extension (Hyperextension)",
+   "equipment": "machine",
+   "group": "Back",
+   "type": "reps_only",
+   "measure": "reps",
+   "sessions": [
+    {
+     "date": "2026-11-24",
+     "value": 10,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "id": "56808FD2",
+   "title": "Pull Up (Band)",
+   "equipment": "resistance_band",
+   "group": "Back",
+   "type": "bodyweight_assisted",
+   "measure": "reps",
+   "sessions": [
+    {
+     "date": "2026-11-24",
+     "value": 7,
+     "reps": 7
+    }
+   ]
+  },
+  {
    "id": "75A4F6C4",
    "title": "Leg Extension (Machine)",
    "equipment": "machine",
@@ -421,6 +476,22 @@
    ]
   },
   {
+   "id": "C6272009",
+   "title": "Deadlift (Barbell)",
+   "equipment": "barbell",
+   "group": "Legs",
+   "type": "weight_reps",
+   "measure": "e1rm",
+   "sessions": [
+    {
+     "date": "2026-11-24",
+     "value": 176.7,
+     "weight": 143.3,
+     "reps": 7
+    }
+   ]
+  },
+  {
    "id": "C7973E0E",
    "title": "Leg Press (Machine)",
    "equipment": "machine",
@@ -432,6 +503,22 @@
      "date": "2026-11-02",
      "value": 280.0,
      "weight": 210.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "id": "72CFFAD5",
+   "title": "Romanian Deadlift (Dumbbell)",
+   "equipment": "dumbbell",
+   "group": "Legs",
+   "type": "weight_reps",
+   "measure": "e1rm",
+   "sessions": [
+    {
+     "date": "2026-11-24",
+     "value": 58.8,
+     "weight": 44.1,
      "reps": 10
     }
    ]
@@ -572,6 +659,12 @@
      "value": 40.0,
      "weight": 40.0,
      "reps": 8
+    },
+    {
+     "date": "2026-11-24",
+     "value": 22.0,
+     "weight": 22.0,
+     "reps": 10
     }
    ]
   },
@@ -696,7 +789,21 @@
      "reps": 8
     }
    ]
+  },
+  {
+   "id": "970ADF87",
+   "title": "Hollow Rock",
+   "equipment": "none",
+   "group": "Core",
+   "type": "duration",
+   "measure": "time",
+   "sessions": [
+    {
+     "date": "2026-11-24",
+     "value": 20
+    }
+   ]
   }
  ],
- "generated_at": "2026-11-19T02:08:05+00:00"
+ "generated_at": "2026-11-25T09:02:32+00:00"
 }
