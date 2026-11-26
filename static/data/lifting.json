@@ -5,8 +5,8 @@
  "timezone": "America/Los_Angeles",
  "coverage": {
   "first_date": "2026-10-20",
-  "last_date": "2026-11-24",
-  "workouts": 10
+  "last_date": "2026-11-25",
+  "workouts": 11
  },
  "methodology": {
   "working_sets": "Warm-up sets are excluded everywhere.",
@@ -211,6 +211,26 @@
     "quadriceps": 2.5,
     "traps": 2.5,
     "upper_back": 6.5
+   }
+  },
+  {
+   "date": "2026-11-25",
+   "sessions": 1,
+   "minutes": 8,
+   "working_sets": 19,
+   "volume_lb": 4059,
+   "groups": {
+    "Legs": 9,
+    "Shoulders": 5,
+    "Other": 5
+   },
+   "muscles": {
+    "calves": 2.5,
+    "glutes": 4.5,
+    "hamstrings": 4.5,
+    "quadriceps": 9.0,
+    "shoulders": 5.0,
+    "triceps": 2.5
    }
   }
  ],
@@ -476,6 +496,21 @@
    ]
   },
   {
+   "id": "56092DD1",
+   "title": "Box Jump",
+   "equipment": "other",
+   "group": "Legs",
+   "type": "reps_only",
+   "measure": "reps",
+   "sessions": [
+    {
+     "date": "2026-11-25",
+     "value": 30,
+     "reps": 30
+    }
+   ]
+  },
+  {
    "id": "C6272009",
    "title": "Deadlift (Barbell)",
    "equipment": "barbell",
@@ -535,6 +570,21 @@
      "date": "2026-10-20",
      "value": 25,
      "reps": 25
+    }
+   ]
+  },
+  {
+   "id": "128A2381",
+   "title": "Step Up",
+   "equipment": "other",
+   "group": "Legs",
+   "type": "reps_only",
+   "measure": "reps",
+   "sessions": [
+    {
+     "date": "2026-11-25",
+     "value": 14,
+     "reps": 14
     }
    ]
   },
@@ -625,6 +675,22 @@
      "value": 63.3,
      "weight": 50.0,
      "reps": 8
+    }
+   ]
+  },
+  {
+   "id": "91AF29E0",
+   "title": "Seated Overhead Press (Barbell)",
+   "equipment": "barbell",
+   "group": "Shoulders",
+   "type": "weight_reps",
+   "measure": "best_set",
+   "sessions": [
+    {
+     "date": "2026-11-25",
+     "value": 61.7,
+     "weight": 61.7,
+     "reps": 7
     }
    ]
   },
@@ -803,7 +869,23 @@
      "value": 20
     }
    ]
+  },
+  {
+   "id": "A1F47ACC",
+   "title": "Wall Ball",
+   "equipment": "other",
+   "group": "Other",
+   "type": "weight_reps",
+   "measure": "best_set",
+   "sessions": [
+    {
+     "date": "2026-11-25",
+     "value": 30.9,
+     "weight": 30.9,
+     "reps": 14
+    }
+   ]
   }
  ],
- "generated_at": "2026-11-25T09:02:32+00:00"
+ "generated_at": "2026-11-26T05:30:21+00:00"
 }
