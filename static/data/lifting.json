@@ -5,8 +5,8 @@
  "timezone": "America/Los_Angeles",
  "coverage": {
   "first_date": "2026-10-20",
-  "last_date": "2026-11-25",
-  "workouts": 11
+  "last_date": "2026-11-26",
+  "workouts": 12
  },
  "methodology": {
   "working_sets": "Warm-up sets are excluded everywhere.",
@@ -232,6 +232,22 @@
     "shoulders": 5.0,
     "triceps": 2.5
    }
+  },
+  {
+   "date": "2026-11-26",
+   "sessions": 1,
+   "minutes": 6,
+   "working_sets": 19,
+   "volume_lb": 459,
+   "groups": {
+    "Back": 6,
+    "Other": 13
+   },
+   "muscles": {
+    "forearms": 3.0,
+    "lats": 3.0,
+    "upper_back": 6.0
+   }
   }
  ],
  "exercises": [
@@ -433,6 +449,20 @@
      "date": "2026-11-24",
      "value": 10,
      "reps": 10
+    }
+   ]
+  },
+  {
+   "id": "B9380898",
+   "title": "Dead Hang",
+   "equipment": "none",
+   "group": "Back",
+   "type": "duration",
+   "measure": "time",
+   "sessions": [
+    {
+     "date": "2026-11-26",
+     "value": 15
     }
    ]
   },
@@ -871,6 +901,37 @@
    ]
   },
   {
+   "id": "BB792A36",
+   "title": "Burpee",
+   "equipment": "none",
+   "group": "Other",
+   "type": "reps_only",
+   "measure": "reps",
+   "sessions": [
+    {
+     "date": "2026-11-26",
+     "value": 5,
+     "reps": 5
+    }
+   ]
+  },
+  {
+   "id": "F4E77594",
+   "title": "Hang Snatch",
+   "equipment": "barbell",
+   "group": "Other",
+   "type": "weight_reps",
+   "measure": "best_set",
+   "sessions": [
+    {
+     "date": "2026-11-26",
+     "value": 59.5,
+     "weight": 59.5,
+     "reps": 2
+    }
+   ]
+  },
+  {
    "id": "A1F47ACC",
    "title": "Wall Ball",
    "equipment": "other",
@@ -887,5 +948,5 @@
    ]
   }
  ],
- "generated_at": "2026-11-26T05:30:21+00:00"
+ "generated_at": "2026-11-27T04:30:55+00:00"
 }
