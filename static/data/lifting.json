@@ -5,8 +5,8 @@
  "timezone": "America/Los_Angeles",
  "coverage": {
   "first_date": "2026-10-20",
-  "last_date": "2026-11-26",
-  "workouts": 12
+  "last_date": "2026-11-28",
+  "workouts": 13
  },
  "methodology": {
   "working_sets": "Warm-up sets are excluded everywhere.",
@@ -248,6 +248,21 @@
     "lats": 3.0,
     "upper_back": 6.0
    }
+  },
+  {
+   "date": "2026-11-28",
+   "sessions": 1,
+   "minutes": 20,
+   "working_sets": 10,
+   "volume_lb": 0,
+   "groups": {
+    "Chest": 10
+   },
+   "muscles": {
+    "chest": 10.0,
+    "shoulders": 5.0,
+    "triceps": 5.0
+   }
   }
  ],
  "exercises": [
@@ -332,6 +347,21 @@
      "value": 50.0,
      "weight": 50.0,
      "reps": 12
+    }
+   ]
+  },
+  {
+   "id": "392887AA",
+   "title": "Push Up",
+   "equipment": "none",
+   "group": "Chest",
+   "type": "reps_only",
+   "measure": "reps",
+   "sessions": [
+    {
+     "date": "2026-11-28",
+     "value": 15,
+     "reps": 15
     }
    ]
   },
@@ -948,5 +978,5 @@
    ]
   }
  ],
- "generated_at": "2026-11-27T04:30:55+00:00"
+ "generated_at": "2026-11-28T14:21:19+00:00"
 }
